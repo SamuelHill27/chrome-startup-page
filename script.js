@@ -1,5 +1,1 @@
-function startUp() {
-  html.getElementsById('header1').innerHtml = "Hello World!";
-}
-
-startUp();
+document.getElementById("header1").innerHTML = "Hello World!";
