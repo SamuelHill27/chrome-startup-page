@@ -1,3 +1,125 @@
-h1 {
-  color: blue;
+body {
+  background-color: black;
+}
+
+div {
+  outline: solid;
+}
+
+.wall {
+  outline-width: thick;
+  display: flex;
+  flex-direction: row;
+  height: 97vh;
+  background-color: white;
+}
+
+.vertical-section-containers {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-container-dividers {
+  height: 100%;
+  width: 1%;
+  background-color: black;
+}
+
+#left-container {
+  width: 19%;
+}
+
+#middle-container {
+  width: 60%;
+  background-image: url(background-image.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  justify-content: flex-end;
+}
+
+#right-container {
+  width: 19%;
+}
+
+#weather-container {
+  height: 25%;
+}
+
+#time-container {
+  height: 25%;
+}
+
+#news-container {
+  height: 50%;
+}
+
+#search-bar-container {
+  height: 15%;
+  background-color: white;
+}
+
+#shortcut-rows-container {
+  height: 50%;
+  background-color: white;
+  margin-bottom: 12%;
+}
+
+.shortcut-rows {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 50%;
+}
+
+.shortcut {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  width: 27%;
+  height: 80%;
+}
+
+.shortcut-images {
+  max-width: 100%;
+  height: 80%;
+}
+
+.shortcut-text-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  height: 20%;
+}
+
+.shortcut-text {
+  font-size: 1.2vmax;
+  outline: solid;
+  width: 80%;
+  text-align: center;
+}
+
+.edit-shortcut {
+  width: 12%;
+}
+
+#google-services-container {
+  height: 45%;
+}
+
+#textbox-container {
+  height: 45%;
+  background-color: rgb(50, 50, 50);
+}
+
+#dash-links-container {
+  height: 10%;
+}
+
+#textbox {
+  margin: 5%;
+  width: 88%;
+  height: 93%
 }
