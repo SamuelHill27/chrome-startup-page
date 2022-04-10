@@ -43,11 +43,90 @@ div {
 }
 
 #weather-container {
-  height: 25%;
+  height: 35%;
+}
+
+.weather-rows {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#top-weather-row {
+  height: 60%;
+}
+
+#bottom-weather-row {
+  height: 40%;
+}
+
+.weather-element {
+  height: 100%;
+}
+
+.weather-element #weather-1 {
+  width: 55%;
+}
+
+.weather-element #weather-2 {
+  width: 45%;
+}
+
+.weather-day-rows {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 20%;
+}
+
+.current-weather {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 60%;
+}
+
+#weather-desc {
+  height: 40%;
+}
+
+.current-weather img {
+  width: 50%;
+  height: 100%;
+}
+
+.current-weather h1 {
+  font-size: 3.5vh;
+  margin: 0;
+  margin-bottom: 10%;
+}
+
+.weather-day-rows h2 {
+  font-size: 2vh;
+}
+
+.current-weather h3 {
+  font-size: 0.6vmax;
+  text-align: center;
+}
+
+.current-weather div {
+  width: 50%;
+}
+
+#current-weather-id {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 50%;
+  height: 100%;
 }
 
 #time-container {
-  height: 25%;
+  height: 15%;
 }
 
 #news-container {
@@ -77,7 +156,7 @@ div {
   display: flex;
   flex-direction: column;
   align-content: space-between;
-  width: 27%;
+  width: 20%;
   height: 80%;
 }
 
@@ -121,5 +200,5 @@ div {
 #textbox {
   margin: 5%;
   width: 88%;
-  height: 93%
+  height: 90%
 }

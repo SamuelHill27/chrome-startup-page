@@ -1,16 +1,24 @@
-const apiKey = "941e95dd90794c60b4043d78e5da6f6c";
-const fix = "https://cors-anywhere.herokuapp.com/";
-const newsFeed = fix + "https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=" + apiKey;
+const date = new Date();
 
-function displayNews() {
-  fetch(newsFeed, {headers: new Headers({"X-Requested-with":"ehh..."})})
-  .then(a => a.json())
-  .then(response => {
-    for (let i = 0; i < response.articles.length; i++) {
-      document.getElementById("news-container").innerHTML += "<div style='padding-top: 20px;'><img style='float: left; width: 150px;' src='" + response.artcles[i].urlToImage + "'><h1>" + response.articles[i].title + "</h1>" + response.articles[i].source.name + "<br>" + response.articles[i].description + " <a href='" + response.articles[i].url+"' target='_blank'>" + response.articles[i].url + "</a></div>";
+function weatherApi() {
+  const weatherApiKey = "7464d8f56ed30f0467bc4d7331befa80";
+  const lat = 51.276560;
+  const lon = -0.842150;
+  const weatherFeed = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exlude=daily&appid=" + weatherApiKey;
 
-    }
-  })
+  fetch(weatherFeed)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      const currentTemp = data['current']['temp'] - 273.15;
+      const currentFeelLike = data['current']['feels_like'] - 273.15;
+      const sunrise = data['current']['sunrise'];
+      const sunset = data['current']['sunset'];
+
+    });
+
+  const lastUpdated = date.getHours() + ":" + date.getMinutes();
+  document.getElementById('lastUpdated').innerHTML = lastUpdated;
 }
 
-displayNews(newsFeed);
+weatherApi();
