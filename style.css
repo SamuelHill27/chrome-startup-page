@@ -42,6 +42,8 @@ div {
   width: 19%;
 }
 
+/* Weather Widget */
+
 #weather-container {
   height: 35%;
 }
@@ -146,8 +148,36 @@ div {
   height: 100%;
 }
 
+/* Time Widget */
+
 #time-container {
   height: 15%;
+}
+
+#time {
+  height: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4vmax;
+}
+
+#timeZone {
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#timeZoneInput {
+  padding: 2%;
+  font-size: 0.6vmax;
+}
+
+#timeBtn {
+  margin-right: 5%;
+  height: 70%;
+  width: height;
 }
 
 #news-container {
@@ -158,6 +188,8 @@ div {
   height: 15%;
   background-color: white;
 }
+
+/* Shortcuts */
 
 #shortcut-rows-container {
   height: 50%;
@@ -205,21 +237,32 @@ div {
   width: 12%;
 }
 
+/* Google Services Widget */
+
 #google-services-container {
+  height: 30%;
+}
+
+#something-container {
   height: 45%;
 }
+
+/* Textbox Widget */
 
 #textbox-container {
-  height: 45%;
+  height: 20%;
   background-color: rgb(50, 50, 50);
-}
-
-#dash-links-container {
-  height: 10%;
+  text-align: center;
 }
 
 #textbox {
-  margin: 5%;
-  width: 88%;
-  height: 90%
+  width: 95%;
+  height: 95%;
+  margin-top: 1%;
+}
+
+/* Dashboard Backend Links */
+
+#dash-links-container {
+  height: 5%;
 }

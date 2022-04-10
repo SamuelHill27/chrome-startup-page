@@ -1,4 +1,4 @@
-const date = new Date();
+//weather api
 
 function weatherApi() {
   const weatherApiKey = "7464d8f56ed30f0467bc4d7331befa80";
@@ -21,4 +21,57 @@ function weatherApi() {
   document.getElementById('lastUpdated').innerHTML = lastUpdated;
 }
 
-//weatherApi();
+//current time
+
+updateCurrentTime();
+
+function correctTime(time) {
+  if (time < 10) {
+    return ("0" + time);
+  }
+  return time;
+}
+
+function updateCurrentTime() {
+  let date = new Date();
+
+  let hour = date.getHours();
+  if (hour > 12) {
+    hour -= 12;
+  }
+  let minute = date.getMinutes();
+  let second = date.getSeconds();
+
+  let correctedHour = correctTime(hour);
+  let correctedMinute = correctTime(minute);
+  let correctedSecond = correctTime(second);
+
+  let currentTime = correctedHour + ":" + correctedMinute + ":" + correctedSecond;
+  document.getElementById('time').innerHTML = currentTime;
+
+  setTimeout(updateCurrentTime, 1000);
+}
+
+//time zones
+
+function timeApi(timeZone) {
+  const timeRequest = "http://worldtimeapi.org/api/timezone/" + timeZone;
+  fetch(timeRequest)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      let dateTime = data['datetime'];
+      let time = dateTime.substring(11, 16);
+      document.getElementById('timeZoneOutput').innerHTML = time;
+    })
+    .catch((error) => {
+      document.getElementById('timeZoneOutput').innerHTML = "Error";
+    });
+}
+
+function getTimeZone() { //called when enter button is pressed
+  const timeZone = document.getElementById('timeZoneInput').value;
+  if (timeZone != "") {
+    timeApi(timeZone);
+  }
+}
