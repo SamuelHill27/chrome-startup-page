@@ -31,7 +31,7 @@ div {
 
 #middle-container {
   width: 60%;
-  background-image: url(background-image.jpg);
+  background-image: url(assets/background-image.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -58,18 +58,27 @@ div {
 
 #bottom-weather-row {
   height: 40%;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .weather-element {
   height: 100%;
 }
 
-.weather-element #weather-1 {
-  width: 55%;
+.weather-hours {
+  width: 15%;
+  height: 40%;
+  text-align: center;
+  justify-content: space-around;
 }
 
-.weather-element #weather-2 {
-  width: 45%;
+#element-1 {
+  width: 60%;
+}
+
+#element-2 {
+  width: 40%;
 }
 
 .weather-day-rows {
@@ -95,22 +104,34 @@ div {
 
 .current-weather img {
   width: 50%;
+  max-height: 100%;
+}
+
+.weather-day-rows img {
   height: 100%;
+  max-width: 40%;
+}
+
+.weather-hours img {
+  max-height: 60%;
 }
 
 .current-weather h1 {
-  font-size: 3.5vh;
+  font-size: 4vh;
   margin: 0;
-  margin-bottom: 10%;
 }
 
 .weather-day-rows h2 {
-  font-size: 2vh;
+  font-size: 1.5vh;
 }
 
 .current-weather h3 {
-  font-size: 0.6vmax;
-  text-align: center;
+  font-size: 0.7vmax;
+}
+
+.weather-hours h4 {
+  margin: 0;
+  font-size: 0.7vmax;
 }
 
 .current-weather div {
