@@ -155,23 +155,19 @@
           </div>
         </div>
 
-        <div id="news-container" class="widget">
-
-          <!--Puzzle Widget-->
-
-          <div>
-
-          </div>
-
-        </div>
+        <div id="news-container" class="widget"></div>
       </div>
 
       <div class="vertical-section-containers" id="middle-container">
-        <div id="search-bar-container">
+        <div class="search-bar-container">
 
           <!--Search Bar-->
 
-          <p>search bar</p>
+          <div class="search-bar-fake">
+            <input id="google-search-bar" type="text" placeholder="SwiftZ Search at your service!" onkeyup="search()">
+            <img id="swiftz-studioz" src="assets/swiftz-studioz.png">
+            <!--<img src="assets/search-icon.png">-->
+          </div>
         </div>
 
         <div id="shortcut-rows-container">
@@ -257,11 +253,43 @@
       </div>
 
       <div class="vertical-section-containers" id="right-container">
-        <div id="google-services-container" class="widget">
+        <div class="google-services-container widget">
 
           <!--Google Services Widget-->
 
-          <p>google services</p>
+          <div class="google-services-rows">
+            <div class="google-services-item">
+              <a href="https://docs.google.com/document/u/0/" target="_blank"><img src="assets/docs.png"></a>
+              <h3>Docs</h3>
+            </div>
+
+            <div class="google-services-item">
+              <a href="https://docs.google.com/presentation/u/0/" target="_blank"><img src="assets/slides.png"></a>
+              <h3>Slides</h3>
+            </div>
+
+            <div class="google-services-item">
+              <a href="https://docs.google.com/spreadsheets/u/0/" target="_blank"><img src="assets/sheets.png"></a>
+              <h3>Sheets</h3>
+            </div>
+          </div>
+
+          <div class="google-services-rows">
+            <div class="google-services-item">
+              <a href="https://www.google.com/maps/" target="_blank"><img src="assets/maps.png"></a>
+              <h3>Maps</h3>
+            </div>
+
+            <div class="google-services-item">
+              <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank"><img src="assets/gmail.png"></a>
+              <h3>Gmail</h3>
+            </div>
+
+            <div class="google-services-item">
+              <a href="https://www.youtube.com/" target="_blank"><img src="assets/youtube.png"></a>
+              <h3>Youtube</h3>
+            </div>
+          </div>
         </div>
 
         <div id="something-container" class="widget">

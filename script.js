@@ -22,6 +22,39 @@ function capitalizeWeatherDesc(string) {
   }
 }
 
+//google services
+
+
+
+//search
+
+function search() {
+  if (event.key == "Enter") {
+    let query = document.getElementById('google-search-bar').value;
+    let i = 0;
+    let words = 0;
+    let wordBeginning = 0;
+    let queryWordsArr = [];
+
+    while (i < query.length + 1) {
+      if (query.charAt(i) == " " || i == query.length) {
+        queryWordsArr[words] = query.substring(wordBeginning, i);
+        wordBeginning = i + 1;
+        words++;
+      }
+      i++;
+    }
+
+    let fullQuery = queryWordsArr[0];
+    for (let j = 1; j < queryWordsArr.length; j++) {
+      fullQuery += "+" + queryWordsArr[j];
+    }
+
+    console.log(fullQuery);
+    window.open("https://www.google.com/search?q=" + fullQuery)
+  }
+}
+
 //news api
 
 newsApi();
@@ -39,6 +72,9 @@ function newsApi() {
       addNewsStory(data['results']['2']);
       addNewsStory(data['results']['3']);
       addNewsStory(data['results']['4']);
+    })
+    .catch((error) => {
+      document.getElementById('news-container').innerHTML = "error - no news api credits remaining";
     });
 }
 

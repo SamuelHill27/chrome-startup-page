@@ -4,7 +4,7 @@ body {
 }
 
 div {
-  //outline: solid;
+  outline: solid;
 }
 
 .wall {
@@ -53,7 +53,7 @@ div {
 }
 
 .weather-readability {
-  background-color: rgba(230, 230, 230, 0.6);
+  background-color: rgba(200, 200, 200, 0.65);
   width: 100%;
   height: 101%;
 }
@@ -87,13 +87,14 @@ div {
 }
 
 #element-1 {
-  width: 60%;
+  width: 65%;
   margin-left: 2%;
 }
 
 #element-2 {
-  width: 40%;
+  width: 35%;
   margin-top: 2%;
+  margin-right: 2%;
 }
 
 .weather-day-rows {
@@ -128,29 +129,31 @@ div {
 }
 
 .weather-hours img {
-  max-height: 60%;
+  width: 60%;
+  margin-bottom: -10px;
 }
 
 .current-weather h1 {
-  font-size: 4vh;
+  font-size: 4.2vh;
   margin: 0;
 }
 
 .weather-day-rows h2 {
-  font-size: 1.5vh;
+  font-size: 1.6vh;
 }
 
 .current-weather h3 {
-  font-size: 0.7vmax;
+  font-size: 0.8vmax;
 }
 
 .weather-hours h4 {
   margin: 0;
-  font-size: 0.7vmax;
+  font-size: 0.75vmax;
 }
 
 .weather-hours h5 {
   margin: 0;
+  font-size: 0.65vmax;
 }
 
 .current-weather div {
@@ -223,8 +226,43 @@ div {
   outline: solid;
 }
 
-#search-bar-container {
+.search-bar-container {
   height: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-bar-fake {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+  background-color: white;
+  position: relative;
+  outline: solid;
+}
+
+#google-search-bar {
+  border: none;
+  display: block;
+  width: 100%;
+  padding: 1.5%;
+  box-sizing: border-box;
+  font-size: 0.8vmax;
+}
+
+.search-bar-fake img {
+  height: 80%;
+  margin: 0;
+  position: absolute;
+  right: 1%;
+}
+
+#swiftz-studioz {
+  height: 50%;
+  margin-right: 4%;
 }
 
 /* Shortcuts */
@@ -276,8 +314,41 @@ div {
 
 /* Google Services Widget */
 
-#google-services-container {
-  height: 30%;
+.google-services-container {
+  height: 25%;
+  background-image: url(assets/google-services-background.png);
+  background-position: center;
+}
+
+.google-services-rows {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 50%;
+}
+
+.google-services-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+  font-size: 100%;
+  padding: 7px;
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+.google-services-item a {
+  text-align: center;
+}
+
+.google-services-item img {
+  width: 60%;
+  margin-bottom: 5px;
+}
+
+.google-services-item h3 {
+  margin: 0;
 }
 
 #something-container {
