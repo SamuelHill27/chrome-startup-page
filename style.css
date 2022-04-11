@@ -1,22 +1,26 @@
 body {
-  background-color: black;
+  background-image: url(assets/background-image.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
 }
 
 div {
-  outline: solid;
+  //outline: solid;
 }
 
 .wall {
   outline-width: thick;
   display: flex;
   flex-direction: row;
-  height: 97vh;
-  background-color: white;
+  height: 98vh;
 }
 
 .vertical-section-containers {
   display: flex;
   flex-direction: column;
+  outline: solid;
 }
 
 .section-container-dividers {
@@ -26,26 +30,35 @@ div {
 }
 
 #left-container {
-  width: 19%;
+  width: 20%;
 }
 
 #middle-container {
   width: 60%;
-  background-image: url(assets/background-image.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
   justify-content: flex-end;
+  outline: none;
 }
 
 #right-container {
-  width: 19%;
+  width: 20%;
+  background-color: white;
+}
+
+.widget {
+  background-position: center;
 }
 
 /* Weather Widget */
 
 #weather-container {
   height: 35%;
+  background-image: url(assets/weather-background-image.jpg);
+}
+
+.weather-readability {
+  background-color: rgba(230, 230, 230, 0.6);
+  width: 100%;
+  height: 101%;
 }
 
 .weather-rows {
@@ -56,10 +69,11 @@ div {
 
 #top-weather-row {
   height: 60%;
+  margin-top: -1%;
 }
 
 #bottom-weather-row {
-  height: 40%;
+  height: 37%;
   justify-content: space-around;
   flex-wrap: wrap;
 }
@@ -77,10 +91,12 @@ div {
 
 #element-1 {
   width: 60%;
+  margin-left: 2%;
 }
 
 #element-2 {
   width: 40%;
+  margin-top: 2%;
 }
 
 .weather-day-rows {
@@ -136,6 +152,10 @@ div {
   font-size: 0.7vmax;
 }
 
+.weather-hours h5 {
+  margin: 0;
+}
+
 .current-weather div {
   width: 50%;
 }
@@ -151,7 +171,15 @@ div {
 /* Time Widget */
 
 #time-container {
+  background-image: url(assets/time-background-image.png);
   height: 15%;
+}
+
+.time-readability {
+  background-color: rgba(50, 50, 50, 0.7);
+  width: 100%;
+  height: 100%;
+  color: white;
 }
 
 #time {
@@ -163,46 +191,49 @@ div {
 }
 
 #timeZone {
-  height: 30%;
+  height: 20%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 #timeZoneInput {
-  padding: 2%;
+  padding: 1.5%;
   font-size: 0.6vmax;
 }
 
 #timeBtn {
   margin-right: 5%;
-  height: 70%;
+  height: 95%;
   width: height;
 }
 
+/* News Widget */
+
 #news-container {
   height: 50%;
-  background-color: rgb(192,4,4);
+  background-color: rgb(192, 40, 40);
 }
 
 #news-container h1 {
-  font-size: 1vmax;
+  font-size: 0.95vmax;
+  color: white;
 }
 
 #news-container h2 {
-  font-size: 0.6vmax;
+  font-size: 0.55vmax;
+  background-color: white;
+  outline: solid;
 }
 
 #search-bar-container {
   height: 15%;
-  background-color: white;
 }
 
 /* Shortcuts */
 
 #shortcut-rows-container {
   height: 50%;
-  background-color: white;
   margin-bottom: 12%;
 }
 
@@ -265,9 +296,11 @@ div {
 }
 
 #textbox {
-  width: 95%;
-  height: 95%;
-  margin-top: 1%;
+  width: 90%;
+  height: 82%;
+  padding: 2%;
+  margin: 2%;
+  font-size: 0.7vmax;
 }
 
 /* Dashboard Backend Links */
