@@ -1,8 +1,5 @@
 body {
-  background-image: url(assets/background-image.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  background-color: black;
   overflow: hidden;
 }
 
@@ -21,12 +18,7 @@ div {
   display: flex;
   flex-direction: column;
   outline: solid;
-}
-
-.section-container-dividers {
-  height: 100%;
-  width: 1%;
-  background-color: black;
+  outline-width: thick;
 }
 
 #left-container {
@@ -34,9 +26,14 @@ div {
 }
 
 #middle-container {
+  background-image: url(assets/background-image.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   width: 60%;
+  height: 105vh;
+  margin-top: -2.5vh;
   justify-content: flex-end;
-  outline: none;
 }
 
 #right-container {
