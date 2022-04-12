@@ -1,4 +1,4 @@
-function getDate() {
+function getCurrentDate() {
   return new Date();
 }
 
@@ -21,10 +21,6 @@ function capitalizeWeatherDesc(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 }
-
-//google services
-
-
 
 //search
 
@@ -137,9 +133,9 @@ function correctHour(hour) {
 }
 
 function getCurrentTime() {
-  let hour = getDate().getHours();
-  let minute = getDate().getMinutes();
-  let second = getDate().getSeconds();
+  let hour = getCurrentDate().getHours();
+  let minute = getCurrentDate().getMinutes();
+  let second = getCurrentDate().getSeconds();
   let currentTime = correctTime(correctHour(hour)) + ":" + correctTime(minute) + ":" + correctTime(second);
   return currentTime;
 }
@@ -150,28 +146,24 @@ function updateCurrentTime() {
   setTimeout(updateCurrentTime, 1000);
 }
 
-//time zones
+//current date
 
-function timeApi(timeZone) {
-  const timeRequest = "http://worldtimeapi.org/api/timezone/" + timeZone;
-  fetch(timeRequest)
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      let dateTime = data['datetime'];
-      let time = dateTime.substring(11, 16);
-      document.getElementById('timeZoneOutput').innerHTML = time;
-    })
-    .catch((error) => {
-      document.getElementById('timeZoneOutput').innerHTML = "Error";
-    });
-}
+setDate();
 
-function getTimeZone() { //called when enter button is pressed
-  const timeZone = document.getElementById('timeZoneInput').value;
-  if (timeZone != "") {
-    timeApi(timeZone);
-  }
+function setDate() {
+const date = getCurrentDate();
+
+const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+let day = days[date.getDay()];
+
+let dayOfMonth = date.getDate();
+
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+let month = months[date.getMonth()];
+
+let year = date.getFullYear();
+
+document.getElementById('date').innerHTML = day + " " + dayOfMonth + " " + month + " " + year;
 }
 
 //weather api
@@ -206,6 +198,7 @@ function setCurrentWeather(data) {
   let sunsetSeconds = data['sunset'];
   let sunsetDate = new Date(sunsetSeconds*1000);
   let sunset = correctTime(correctHour(sunsetDate.getHours())) + ":" + correctTime(correctHour(sunsetDate.getMinutes()));
+
   document.getElementById('sunrise').innerHTML = "Sunrise: " + sunrise;
   document.getElementById('sunset').innerHTML = "Sunset: " + sunset;
 
@@ -218,7 +211,7 @@ function setHourlyWeather(data) {
     document.getElementById('hour+' + (i+1)).src = "http://openweathermap.org/img/wn/" + data[i]['weather']['0']['icon'] + "@2x.png";
     document.getElementById('hour+' + (i+1) + '-temp').innerHTML = Math.round(data[i]['temp'] - 273.15) + "°C";
 
-    time = getDate().getHours() + (i+1);
+    time = getCurrentDate().getHours() + (i+1);
     if(time > 23) {
       time -= 24;
     }
@@ -227,7 +220,17 @@ function setHourlyWeather(data) {
 }
 
 function setDailyWeather(data) {
+  const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const currentDay = getCurrentDate().getDay();
+
   for (let i = 0; i < 5; i++) {
+    let dayAtIndex = currentDay + 1 + i;
+    if (dayAtIndex > 6) {
+      dayAtIndex -= 7;
+    }
+
+    let day = days[dayAtIndex];
+    document.getElementById('day' + (i+1)).innerHTML = day;
     document.getElementById('day' + (i+1) + '-weather-icon').src = "http://openweathermap.org/img/wn/" + data[i]['weather']['0']['icon'] + "@2x.png";
   }
 }

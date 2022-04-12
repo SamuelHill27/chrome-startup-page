@@ -16,6 +16,9 @@
           <div class="weather-readability">
             <div class="weather-rows" id="top-weather-row">
               <div class="weather-element" id="element-1">
+
+                <!--Current Weather-->
+
                 <div class="current-weather">
                   <img id="current-weather-icon" src="assets/shortcut-placeholder-image.png">
 
@@ -37,33 +40,37 @@
                 </div>
               </div>
 
+              <!--Daily Weather-->
+
               <div class="weather-element" id="element-2">
                 <div class="weather-day-rows">
-                  <h2>Monday</h2>
+                  <h2 id="day1">Monday</h2>
                   <img id="day1-weather-icon" src="assets/shortcut-placeholder-image.png">
                 </div>
 
                 <div class="weather-day-rows">
-                  <h2>Tuesday</h2>
+                  <h2 id="day2">Tuesday</h2>
                   <img id="day2-weather-icon" src="assets/shortcut-placeholder-image.png">
                 </div>
 
                 <div class="weather-day-rows">
-                  <h2>Wednesday</h2>
+                  <h2 id="day3">Wednesday</h2>
                   <img id="day3-weather-icon" src="assets/shortcut-placeholder-image.png">
                 </div>
 
                 <div class="weather-day-rows">
-                  <h2>Thursday</h2>
+                  <h2 id="day4">Thursday</h2>
                   <img id="day4-weather-icon" src="assets/shortcut-placeholder-image.png">
                 </div>
 
                 <div class="weather-day-rows">
-                  <h2>Friday</h2>
+                  <h2 id="day5">Friday</h2>
                   <img id="day5-weather-icon" src="assets/shortcut-placeholder-image.png">
                 </div>
               </div>
             </div>
+
+            <!--Hourly Weather-->
 
             <div class="weather-rows" id="bottom-weather-row">
               <div class="weather-hours">
@@ -147,10 +154,8 @@
 
           <div class="time-readability">
             <div id="time">time...</div>
-            <div id="timeZone">
-              <input id="timeZoneInput" type="text" placeholder="Area/Location...">
-              <button id="timeBtn" onclick="getTimeZone()">Enter</button>
-              <h1 id="timeZoneOutput">--:--</h1>
+            <div class="date">
+              <h1 id="date">date...</h1>
             </div>
           </div>
         </div>
