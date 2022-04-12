@@ -2,148 +2,148 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>swiftz dashboard</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <div class="wall">
-
       <div class="vertical-section-containers" id="left-container">
         <div id="weather-container" class="widget">
 
           <!--Weather Widget-->
 
-          <div class="weather-readability">
-            <div class="weather-rows" id="top-weather-row">
-              <div class="weather-element" id="element-1">
+          <div class="weather-rows" id="top-weather-row">
+            <div class="weather-element" id="element-1">
 
-                <!--Current Weather-->
+              <!--Current Weather-->
 
-                <div class="current-weather">
-                  <img id="current-weather-icon" src="assets/shortcut-placeholder-image.png">
+              <div class="current-weather">
+                <img id="current-weather-icon" src="assets/shortcut-placeholder-image.png">
 
-                  <div id="current-weather-id">
-                    <h1 id="temperature">11*C</h1>
-                    <h3 id="feels-like">Feels-Like: 10*C</h3>
-                  </div>
-                </div>
-
-                <div class="current-weather" id="weather-info">
+                <div id="current-weather-id">
+                  <h1 id="temperature">##*C</h1>
                   <div>
-                    <h3 id="weather-desc">Cloudy</h3>
-                    <h3 id="wind-speed">Wind: 12km/h</h3>
-                  </div>
-                  <div>
-                    <h3 id="sunrise">Sunrise: 6:24</h3>
-                    <h3 id="sunset">Sunset: 7:19</h3>
+                    <h3>Feels Like</h3>
+                    <h3 id="feels-like">##*C</h3>
                   </div>
                 </div>
               </div>
 
-              <!--Daily Weather-->
-
-              <div class="weather-element" id="element-2">
-                <div class="weather-day-rows">
-                  <h2 id="day1">Monday</h2>
-                  <img id="day1-weather-icon" src="assets/shortcut-placeholder-image.png">
+              <div class="current-weather" id="weather-info">
+                <div>
+                  <h3 id="weather-desc">description</h3>
+                  <h3 id="wind-speed">wind...</h3>
                 </div>
-
-                <div class="weather-day-rows">
-                  <h2 id="day2">Tuesday</h2>
-                  <img id="day2-weather-icon" src="assets/shortcut-placeholder-image.png">
-                </div>
-
-                <div class="weather-day-rows">
-                  <h2 id="day3">Wednesday</h2>
-                  <img id="day3-weather-icon" src="assets/shortcut-placeholder-image.png">
-                </div>
-
-                <div class="weather-day-rows">
-                  <h2 id="day4">Thursday</h2>
-                  <img id="day4-weather-icon" src="assets/shortcut-placeholder-image.png">
-                </div>
-
-                <div class="weather-day-rows">
-                  <h2 id="day5">Friday</h2>
-                  <img id="day5-weather-icon" src="assets/shortcut-placeholder-image.png">
+                <div>
+                  <h3 id="sunrise">sunrise...</h3>
+                  <h3 id="sunset">sunset...</h3>
                 </div>
               </div>
             </div>
 
-            <!--Hourly Weather-->
+            <!--Daily Weather-->
 
-            <div class="weather-rows" id="bottom-weather-row">
-              <div class="weather-hours">
-                <img id="hour+1" src="assets/shortcut-placeholder-image.png">
-                <h5 id="hourRange1">08:00</h5>
-                <h4 id="hour+1-temp">13*C</h4>
+            <div class="weather-element" id="element-2">
+              <div class="weather-day-rows">
+                <h2 id="day1">Monday</h2>
+                <img id="day1-weather-icon" src="assets/shortcut-placeholder-image.png">
               </div>
 
-              <div class="weather-hours">
-                <img id="hour+2" src="assets/shortcut-placeholder-image.png">
-                <h5 id="hourRange2">08:00</h5>
-                <h4 id="hour+2-temp">14*C</h4>
+              <div class="weather-day-rows">
+                <h2 id="day2">Tuesday</h2>
+                <img id="day2-weather-icon" src="assets/shortcut-placeholder-image.png">
               </div>
 
-              <div class="weather-hours">
-                <img id="hour+3" src="assets/shortcut-placeholder-image.png">
-                <h5 id="hourRange3">08:00</h5>
-                <h4 id="hour+3-temp">14*C</h4>
+              <div class="weather-day-rows">
+                <h2 id="day3">Wednesday</h2>
+                <img id="day3-weather-icon" src="assets/shortcut-placeholder-image.png">
               </div>
 
-              <div class="weather-hours">
-                <img id="hour+4" src="assets/shortcut-placeholder-image.png">
-                <h5 id="hourRange4">08:00</h5>
-                <h4 id="hour+4-temp">14*C</h4>
+              <div class="weather-day-rows">
+                <h2 id="day4">Thursday</h2>
+                <img id="day4-weather-icon" src="assets/shortcut-placeholder-image.png">
               </div>
 
-              <div class="weather-hours">
-                <img id="hour+5" src="assets/shortcut-placeholder-image.png">
-                <h5 id="hourRange5">08:00</h5>
-                <h4 id="hour+5-temp">14*C</h4>
+              <div class="weather-day-rows">
+                <h2 id="day5">Friday</h2>
+                <img id="day5-weather-icon" src="assets/shortcut-placeholder-image.png">
               </div>
+            </div>
+          </div>
 
-              <div class="weather-hours">
-                <img id="hour+6" src="assets/shortcut-placeholder-image.png">
-                <h5 id="hourRange6">08:00</h5>
-                <h4 id="hour+6-temp">14*C</h4>
-              </div>
+          <!--Hourly Weather-->
 
-              <div class="weather-hours">
-                <img id="hour+7" src="assets/shortcut-placeholder-image.png">
-                <h5 id="hourRange7">08:00</h5>
-                <h4 id="hour+7-temp">14*C</h4>
-              </div>
+          <div class="weather-rows" id="bottom-weather-row">
+            <div class="weather-hours">
+              <img id="hour+1" src="assets/shortcut-placeholder-image.png">
+              <h5 id="hourRange1">unset</h5>
+              <h4 id="hour+1-temp">##*C</h4>
+            </div>
 
-              <div class="weather-hours">
-                <img id="hour+8" src="assets/shortcut-placeholder-image.png">
-                <h5 id="hourRange8">08:00</h5>
-                <h4 id="hour+8-temp">14*C</h4>
-              </div>
+            <div class="weather-hours">
+              <img id="hour+2" src="assets/shortcut-placeholder-image.png">
+              <h5 id="hourRange2">unset</h5>
+              <h4 id="hour+2-temp">##*C</h4>
+            </div>
 
-              <div class="weather-hours">
-                <img id="hour+9" src="assets/shortcut-placeholder-image.png">
-                <h5 id="hourRange9">08:00</h5>
-                <h4 id="hour+9-temp">14*C</h4>
-              </div>
+            <div class="weather-hours">
+              <img id="hour+3" src="assets/shortcut-placeholder-image.png">
+              <h5 id="hourRange3">unset</h5>
+              <h4 id="hour+3-temp">##*C</h4>
+            </div>
 
-              <div class="weather-hours">
-                <img id="hour+10" src="assets/shortcut-placeholder-image.png">
-                <h5 id="hourRange10">08:00</h5>
-                <h4 id="hour+10-temp">14*C</h4>
-              </div>
+            <div class="weather-hours">
+              <img id="hour+4" src="assets/shortcut-placeholder-image.png">
+              <h5 id="hourRange4">unset</h5>
+              <h4 id="hour+4-temp">##*C</h4>
+            </div>
 
-              <div class="weather-hours">
-                <img id="hour+11" src="assets/shortcut-placeholder-image.png">
-                <h5 id="hourRange11">08:00</h5>
-                <h4 id="hour+11-temp">14*C</h4>
-              </div>
+            <div class="weather-hours">
+              <img id="hour+5" src="assets/shortcut-placeholder-image.png">
+              <h5 id="hourRange5">unset</h5>
+              <h4 id="hour+5-temp">##*C</h4>
+            </div>
 
-              <div class="weather-hours">
-                <img id="hour+12" src="assets/shortcut-placeholder-image.png">
-                <h5 id="hourRange12">08:00</h5>
-                <h4 id="hour+12-temp">14*C</h4>
-              </div>
+            <div class="weather-hours">
+              <img id="hour+6" src="assets/shortcut-placeholder-image.png">
+              <h5 id="hourRange6">unset</h5>
+              <h4 id="hour+6-temp">##*C</h4>
+            </div>
+
+            <div class="weather-hours">
+              <img id="hour+7" src="assets/shortcut-placeholder-image.png">
+              <h5 id="hourRange7">unset</h5>
+              <h4 id="hour+7-temp">##*C</h4>
+            </div>
+
+            <div class="weather-hours">
+              <img id="hour+8" src="assets/shortcut-placeholder-image.png">
+              <h5 id="hourRange8">unset</h5>
+              <h4 id="hour+8-temp">##*C</h4>
+            </div>
+
+            <div class="weather-hours">
+              <img id="hour+9" src="assets/shortcut-placeholder-image.png">
+              <h5 id="hourRange9">unset</h5>
+              <h4 id="hour+9-temp">##*C</h4>
+            </div>
+
+            <div class="weather-hours">
+              <img id="hour+10" src="assets/shortcut-placeholder-image.png">
+              <h5 id="hourRange10">unset</h5>
+              <h4 id="hour+10-temp">##*C</h4>
+            </div>
+
+            <div class="weather-hours">
+              <img id="hour+11" src="assets/shortcut-placeholder-image.png">
+              <h5 id="hourRange11">unset</h5>
+              <h4 id="hour+11-temp">##*C</h4>
+            </div>
+
+            <div class="weather-hours">
+              <img id="hour+12" src="assets/shortcut-placeholder-image.png">
+              <h5 id="hourRange12">unset</h5>
+              <h4 id="hour+12-temp">##*C</h4>
             </div>
           </div>
         </div>
@@ -169,6 +169,8 @@
         <div class="search-bar-container">
 
           <!--Search Bar-->
+
+          <h1 id="search-title">Google</h1>
 
           <div class="search-bar-fake">
             <input id="google-search-bar" type="text" placeholder="Search Google" onkeyup="search()">
@@ -318,7 +320,6 @@
           <a href="https://github.com/SamuelHill27/chrome-startup-page" target="_blank">Github repo</a>
         </div>
       </div>
-
     </div>
 
     <script src="script.js"></script>

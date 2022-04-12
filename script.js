@@ -69,10 +69,12 @@ function swapSearchIcon() {
     document.getElementById('search-icon').src = "assets/swiftz-studioz.png";
     document.getElementById('search-icon').style.height = "50%";
     document.getElementById('google-search-bar').placeholder = "SwiftZ Search at your service!"
+    document.getElementById('search-title').innerHTML = "SwiftZ";
   } else {
     document.getElementById('search-icon').src = "assets/search-icon.png";
     document.getElementById('search-icon').style.height = "75%";
     document.getElementById('google-search-bar').placeholder = "Search Google";
+    document.getElementById('search-title').innerHTML = "Google";
   }
 }
 
@@ -190,7 +192,7 @@ function setCurrentWeather(data) {
   document.getElementById('weather-desc').innerHTML = capitalizeWeatherDesc(data['weather']['0']['description']);
   document.getElementById('wind-speed').innerHTML = "Wind: " + data['wind_speed'] + "ms⁻¹";
   document.getElementById('temperature').innerHTML = Math.round(data['temp'] - 273.15) + "°C";
-  document.getElementById('feels-like').innerHTML = "Feels like " + Math.round(data['feels_like'] - 273.15) + "°C";
+  document.getElementById('feels-like').innerHTML = Math.round(data['feels_like'] - 273.15) + "°C";
 
   let sunriseSeconds = data['sunrise'];
   let sunriseDate = new Date(sunriseSeconds*1000);
@@ -215,7 +217,7 @@ function setHourlyWeather(data) {
     if(time > 23) {
       time -= 24;
     }
-    document.getElementById('hourRange' + (i+1)).innerHTML = correctTime(time) + ":00";
+    document.getElementById('hourRange' + (i+1)).innerHTML = correctTime(correctHour(time)) + ":00";
   }
 }
 

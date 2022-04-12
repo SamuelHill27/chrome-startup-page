@@ -1,10 +1,11 @@
 body {
   background-color: black;
   overflow: hidden;
+  font-family: monospace;
 }
 
 div {
-  //outline: solid;
+  /*outline: solid;*/
 }
 
 .wall {
@@ -49,13 +50,8 @@ div {
 
 #weather-container {
   height: 35%;
-  background-image: url(assets/weather-background-image.jpg);
-}
-
-.weather-readability {
-  background-color: rgba(230, 230, 230, 0.65);
-  width: 100%;
-  height: 101%;
+  /*background-image: url(assets/weather-background-image.jpg);*/
+  background-image: linear-gradient(135deg, darkorange, lightblue/*rgb(83, 165, 226)*/, rgb(105, 130, 255));
 }
 
 .weather-rows {
@@ -65,12 +61,12 @@ div {
 }
 
 #top-weather-row {
-  height: 60%;
+  height: 55%;
   margin-top: -1%;
 }
 
 #bottom-weather-row {
-  height: 37%;
+  height: 40%;
   justify-content: space-around;
   flex-wrap: wrap;
 }
@@ -93,8 +89,9 @@ div {
 
 #element-2 {
   width: 35%;
-  margin-top: 2%;
+  margin-top: 4%;
   margin-right: 2%;
+  height: 87%;
 }
 
 .weather-day-rows {
@@ -135,7 +132,15 @@ div {
 
 .current-weather h1 {
   font-size: 4.2vh;
-  margin: 0;
+  margin: 1.5%;
+}
+
+#current-weather-id h3 {
+  margin: 1.5%;
+}
+
+#current-weather-id div {
+  width: 100%;
 }
 
 .weather-day-rows h2 {
@@ -143,17 +148,18 @@ div {
 }
 
 .current-weather h3 {
-  font-size: 0.8vmax;
+  font-size: 0.70vmax;
 }
 
 .weather-hours h4 {
   margin: 0;
-  font-size: 0.75vmax;
+  font-size: 0.70vmax;
 }
 
 .weather-hours h5 {
   margin: 0;
-  font-size: 0.65vmax;
+  font-size: 0.60vmax;
+  color: rgb(50, 50, 50);
 }
 
 .current-weather div {
@@ -207,12 +213,13 @@ div {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
 }
 
 .news-header {
   text-align: center;
   font-weight: bold;
-  font-size: 2vh;
+  font-size: 1.8vh;
   background-color: black;
   color: white/*rgb(192, 4, 4)*/;
   width: 105%;
@@ -221,7 +228,7 @@ div {
 }
 
 #news-container a {
-  font-size: 1.75vh;
+  font-size: 1.7vh;
   color: white;
   text-decoration: none;
 }
@@ -231,18 +238,23 @@ div {
 }
 
 #news-container h2 {
-  font-size: 1.1vh;
+  font-size: 1.0vh;
   background-color: white;
-  outline: solid;
   padding: 5px;
 }
 
 .search-bar-container {
-  height: 15%;
+  height: 25%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.search-bar-container h1 {
+  color: white;
+  font-size: 5vh;
+  margin: 2%;
 }
 
 .search-bar-fake {
@@ -262,7 +274,7 @@ div {
   width: 100%;
   padding: 1.5%;
   box-sizing: border-box;
-  font-size: 0.8vmax;
+  font-size: 0.75vmax;
   padding-left: 20px;
 }
 
@@ -294,6 +306,7 @@ div {
   align-content: space-between;
   width: 20%;
   height: 80%;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .shortcut-images {
@@ -310,7 +323,7 @@ div {
 }
 
 .shortcut-text {
-  font-size: 1.2vmax;
+  font-size: 0.9vmax;
   outline: solid;
   width: 80%;
   text-align: center;
@@ -341,7 +354,7 @@ div {
   align-items: center;
   justify-content: center;
   width: 25%;
-  font-size: 1.3vh;
+  font-size: 1.1vh;
   padding: 7px;
   background-color: rgba(255, 255, 255, 0.85);
 }
