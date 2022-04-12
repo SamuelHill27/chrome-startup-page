@@ -155,7 +155,9 @@
           </div>
         </div>
 
-        <div id="news-container" class="widget"></div>
+        <div id="news-container" class="widget">
+          <div class="news-header">BBC News</div>
+        </div>
       </div>
 
       <div class="vertical-section-containers" id="middle-container">
@@ -164,9 +166,8 @@
           <!--Search Bar-->
 
           <div class="search-bar-fake">
-            <input id="google-search-bar" type="text" placeholder="SwiftZ Search at your service!" onkeyup="search()">
-            <img id="swiftz-studioz" src="assets/swiftz-studioz.png">
-            <!--<img src="assets/search-icon.png">-->
+            <input id="google-search-bar" type="text" placeholder="Search Google" onkeyup="search()">
+            <img id="search-icon" src="assets/search-icon.png" onclick="swapSearchIcon()">
           </div>
         </div>
 
@@ -292,23 +293,24 @@
           </div>
         </div>
 
-        <div id="something-container" class="widget">
+        <div class="calendar-container widget">
 
-          <p>another widget which I haven't decided on yet</p>
+          <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=2&bgcolor=%23ffffff&ctz=Europe%2FLondon&hl=en_GB&title=Calendar&src=am9obm55c3dpZnR6MjdAZ21haWwuY29t&src=ZW4udWsjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%23cc0000&color=%230B8043" frameborder="0" scrolling="no"></iframe>
         </div>
 
         <div id="textbox-container" class="widget">
 
           <!--Textbox Widget-->
 
-          <textarea id="textbox"></textarea>
+          <textarea id="textbox" placeholder="Start typing..."></textarea>
         </div>
 
-        <div id="dash-links-container" class="widget">
+        <div class="dash-links-container widget">
 
           <!--Dashboard Backend Links-->
 
-          <p>dashboard links</p>
+          <a href="https://cp1.awardspace.net/domain-manager/" target="_blank">Domain manager</a>
+          <a href="https://github.com/SamuelHill27/chrome-startup-page" target="_blank">Github repo</a>
         </div>
       </div>
 

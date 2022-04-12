@@ -55,6 +55,31 @@ function search() {
   }
 }
 
+function swapSearchIcon() {
+  let path = document.getElementById('search-icon').src;
+  let i = path.length - 1;
+  let slashCount = 0;
+
+  while (slashCount < 2) {
+    if (path.charAt(i) == "/") {
+      slashCount++;
+    }
+    i--;
+  }
+
+  let localPath = path.slice(i + 2);
+
+  if (localPath == "assets/search-icon.png") {
+    document.getElementById('search-icon').src = "assets/swiftz-studioz.png";
+    document.getElementById('search-icon').style.height = "50%";
+    document.getElementById('google-search-bar').placeholder = "SwiftZ Search at your service!"
+  } else {
+    document.getElementById('search-icon').src = "assets/search-icon.png";
+    document.getElementById('search-icon').style.height = "75%";
+    document.getElementById('google-search-bar').placeholder = "Search Google";
+  }
+}
+
 //news api
 
 newsApi();
@@ -79,12 +104,14 @@ function newsApi() {
 }
 
 function addNewsStory(news) {
-  let tagElements = ["h1", "h2"];
+  let tagElements = ["a", "h2"];
   let newsElements = ['title', 'description'];
 
   for (let i = 0; i < 2; i++) {
     let tag = document.createElement(tagElements[i]);
     let text = document.createTextNode(news[newsElements[i]]);
+    tag.href = news['link'];
+    tag.target = "_blank";
     tag.appendChild(text);
     let element = document.getElementById("news-container");
     element.appendChild(tag);
