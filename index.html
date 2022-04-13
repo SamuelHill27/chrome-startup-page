@@ -8,7 +8,7 @@
   <body>
     <div class="wall">
       <div class="vertical-section-containers" id="left-container">
-        <div id="weather-container" class="widget">
+        <div id="weather-container">
 
           <!--Weather Widget-->
 
@@ -148,7 +148,7 @@
           </div>
         </div>
 
-        <div id="time-container" class="widget">
+        <div id="time-container">
 
           <!--Time Widget-->
 
@@ -160,8 +160,8 @@
           </div>
         </div>
 
-        <div id="news-container" class="widget">
-          <div class="news-header">BBC News</div>
+        <div id="news-container">
+          <div id="news-header">BBC News</div>
         </div>
       </div>
 
@@ -178,82 +178,82 @@
           </div>
         </div>
 
-        <div id="shortcut-rows-container">
+        <div class="shortcut-rows-container">
 
           <!--Shortcuts-->
 
           <div class="shortcut-rows">
-            <div class="shortcut" id="1">
-              <img class="shortcut-images" src="assets/shortcut-placeholder-image.png">
+            <div class="shortcut">
+              <img id="shortcut-text-1" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
 
               <div class="shortcut-text-container">
-                <h2 class="shortcut-text">Shortcut 1</h2>
-                <img class="edit-shortcut" src="assets/edit-shortcut-image.png">
+                <h2 id="shortcut-text-1" class="shortcut-text">Shortcut 1</h2>
+                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="changeShortcut()">
               </div>
             </div>
 
-            <div class="shortcut" id="2">
-              <img class="shortcut-images" src="assets/shortcut-placeholder-image.png">
+            <div class="shortcut">
+              <img id="shortcut-text-2" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
 
               <div class="shortcut-text-container">
-                <h2 class="shortcut-text">Shortcut 2</h2>
-                <img class="edit-shortcut" src="assets/edit-shortcut-image.png">
+                <h2 id="shortcut-text-2" class="shortcut-text">Shortcut 2</h2>
+                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="changeShortcut()">
               </div>
             </div>
 
-            <div class="shortcut" id="3">
-              <img class="shortcut-images" src="assets/shortcut-placeholder-image.png">
+            <div class="shortcut">
+              <img id="shortcut-text-3" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
 
               <div class="shortcut-text-container">
-                <h2 class="shortcut-text">Shortcut 3</h2>
-                <img class="edit-shortcut" src="assets/edit-shortcut-image.png">
+                <h2 id="shortcut-text-3" class="shortcut-text">Shortcut 3</h2>
+                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="changeShortcut()">
               </div>
             </div>
 
-            <div class="shortcut" id="4">
-              <img class="shortcut-images" src="assets/shortcut-placeholder-image.png">
+            <div class="shortcut">
+              <img id="shortcut-text-4" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
 
               <div class="shortcut-text-container">
-                <h2 class="shortcut-text">Shortcut 4</h2>
-                <img class="edit-shortcut" src="assets/edit-shortcut-image.png">
+                <h2 id="shortcut-text-4" class="shortcut-text">Shortcut 4</h2>
+                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="changeShortcut()">
               </div>
             </div>
           </div>
 
           <div class="shortcut-rows">
-            <div class="shortcut" id="5">
-              <img class="shortcut-images" src="assets/shortcut-placeholder-image.png">
+            <div class="shortcut">
+              <img id="shortcut-text-5" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
 
               <div class="shortcut-text-container">
-                <h2 class="shortcut-text">Shortcut 5</h2>
-                <img class="edit-shortcut" src="assets/edit-shortcut-image.png">
+                <h2 id="shortcut-text-5" class="shortcut-text">Shortcut 5</h2>
+                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="changeShortcut()">
               </div>
             </div>
 
-            <div class="shortcut" id="6">
-              <img class="shortcut-images" src="assets/shortcut-placeholder-image.png">
+            <div class="shortcut">
+              <img id="shortcut-text-6" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
 
               <div class="shortcut-text-container">
-                <h2 class="shortcut-text">Shortcut 6</h2>
-                <img class="edit-shortcut" src="assets/edit-shortcut-image.png">
+                <h2 id="shortcut-text-6" class="shortcut-text">Shortcut 6</h2>
+                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="changeShortcut()">
               </div>
             </div>
 
-            <div class="shortcut" id="7">
-              <img class="shortcut-images" src="assets/shortcut-placeholder-image.png">
+            <div class="shortcut">
+              <img id="shortcut-text-7" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
 
               <div class="shortcut-text-container">
-                <h2 class="shortcut-text">Shortcut 7</h2>
-                <img class="edit-shortcut" src="assets/edit-shortcut-image.png">
+                <h2 id="shortcut-text-7" class="shortcut-text">Shortcut 7</h2>
+                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="changeShortcut()">
               </div>
             </div>
 
-            <div class="shortcut" id="8">
-              <img class="shortcut-images" src="assets/shortcut-placeholder-image.png">
+            <div class="shortcut">
+              <img id="shortcut-text-8" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
 
               <div class="shortcut-text-container">
-                <h2 class="shortcut-text">Shortcut 8</h2>
-                <img class="edit-shortcut" src="assets/edit-shortcut-image.png">
+                <h2 id="shortcut-text-8" class="shortcut-text">Shortcut 8</h2>
+                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="changeShortcut()">
               </div>
             </div>
           </div>

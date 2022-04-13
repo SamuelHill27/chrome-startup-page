@@ -5,7 +5,7 @@ body {
 }
 
 div {
-  /*outline: solid;*/
+  outline: solid;
 }
 
 .wall {
@@ -207,30 +207,39 @@ div {
 
 #news-container {
   height: 50%;
-  background-color: rgb(192, 40, 40);
-  padding-left: 5px;
-  padding-right: 10px;
+  background-color: rgb(192, 4, 4);
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
-.news-header {
+#news-container div {
   text-align: center;
+  padding: 5px;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+#news-header {
   font-weight: bold;
   font-size: 1.8vh;
   background-color: black;
   color: white/*rgb(192, 4, 4)*/;
-  width: 105%;
-  margin-left: -5px;
-  padding: 3px;
+  width: 100%;
+}
+
+.news-story {
+  background-color: rgb(255, 255, 255);
 }
 
 #news-container a {
   font-size: 1.7vh;
-  color: white;
+  color: black;
+  font-weight: bold;
   text-decoration: none;
+  margin: 2px;
 }
 
 #news-container a:hover {
@@ -238,9 +247,8 @@ div {
 }
 
 #news-container h2 {
-  font-size: 1.0vh;
-  background-color: white;
-  padding: 5px;
+  font-size: 1.1vh;
+  margin: 2px;
 }
 
 .search-bar-container {
@@ -249,6 +257,11 @@ div {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+#search-title {
+  -webkit-text-stroke: 1px black;
+  font-size: 6vh;
 }
 
 .search-bar-container h1 {
@@ -287,7 +300,7 @@ div {
 
 /* Shortcuts */
 
-#shortcut-rows-container {
+.shortcut-rows-container {
   height: 50%;
   margin-bottom: 12%;
 }
@@ -306,31 +319,35 @@ div {
   align-content: space-between;
   width: 20%;
   height: 80%;
-  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 1;
 }
 
 .shortcut-images {
   max-width: 100%;
-  height: 80%;
+  height: 85%;
 }
 
 .shortcut-text-container {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
-  height: 20%;
+  height: 15%;
+  position: relative;
+  outline: solid;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .shortcut-text {
-  font-size: 0.9vmax;
-  outline: solid;
+  font-size: 0.8vmax;
   width: 80%;
   text-align: center;
+  margin-left: 4%
 }
 
 .edit-shortcut {
   width: 12%;
+  position: absolute;
+  right: 3%;
 }
 
 /* Google Services Widget */
@@ -398,7 +415,7 @@ div {
   height: 88%;
   padding: 2%;
   margin: 2%;
-  font-size: 0.7vmax;
+  font-size: 0.65vmax;
 }
 
 /* Dashboard Backend Links */

@@ -78,23 +78,33 @@ function swapSearchIcon() {
   }
 }
 
+function changeShortcut() {
+
+}
+
 //news api
 
 newsApi();
 
 function newsApi() {
   const newsApiKey = "pub_63646ddb98584a445eb1e2bdf0d0c83d6021";
-  const newsFeed = "https://newsdata.io/api/1/news?apikey=" + newsApiKey + "&domain=bbc&category=top";
+  const newsFeedTop = "https://newsdata.io/api/1/news?apikey=" + newsApiKey + "&domain=bbc&category=top";
+  const newsFeed = "https://newsdata.io/api/1/news?apikey=" + newsApiKey + "&domain=bbc&category=business,science,health,entertainment,technology";
+  const newsFeedNextPage = "https://newsdata.io/api/1/news?apikey=" + newsApiKey + "&domain=bbc&category=business,science,health,entertainment,technology&page=1";
+  fetchNews(newsFeedTop);
+  fetchNews(newsFeed);
+  fetchNews(newsFeedNextPage);
+}
 
+function fetchNews(newsFeed) {
   fetch(newsFeed)
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      addNewsStory(data['results']['0']);
-      addNewsStory(data['results']['1']);
-      addNewsStory(data['results']['2']);
-      addNewsStory(data['results']['3']);
-      addNewsStory(data['results']['4']);
+      let newsStory;
+      for (let i = 0; i < data['results'].length; i++) {
+        addNewsStory(data['results'][i]);
+      }
     })
     .catch((error) => {
       document.getElementById('news-container').innerHTML = "error - no news api credits remaining";
@@ -105,15 +115,20 @@ function addNewsStory(news) {
   let tagElements = ["a", "h2"];
   let newsElements = ['title', 'description'];
 
+  let div = document.createElement("div")
+  div.className = "news-story";
+
   for (let i = 0; i < 2; i++) {
     let tag = document.createElement(tagElements[i]);
     let text = document.createTextNode(news[newsElements[i]]);
     tag.href = news['link'];
     tag.target = "_blank";
     tag.appendChild(text);
-    let element = document.getElementById("news-container");
-    element.appendChild(tag);
+    div.appendChild(tag);
   }
+
+  let element = document.getElementById("news-container");
+  element.appendChild(div);
 }
 
 //current time
