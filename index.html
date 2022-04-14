@@ -6,7 +6,22 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+
     <div class="wall">
+
+      <div id="overlay">
+        <div id="overlayOff" onclick="overlayOff()"></div>
+
+        <div class="shortcut">
+          <img id="paste-image-preview" class="shortcut-images" src="assets/paste-image.png">
+
+          <div class="shortcut-text-container">
+            <input id="newShortcutText" class="shortcut-text" type="text" placeholder="Shortcut Title">
+            <button class="" onclick="changeShortcut()">Change</button>
+          </div>
+        </div>
+      </div>
+
       <div class="vertical-section-containers" id="left-container">
         <div id="weather-container">
 
@@ -184,76 +199,76 @@
 
           <div class="shortcut-rows">
             <div class="shortcut">
-              <img id="shortcut-text-1" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
+              <img id="shortcut-image-1" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
 
               <div class="shortcut-text-container">
                 <h2 id="shortcut-text-1" class="shortcut-text">Shortcut 1</h2>
-                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="changeShortcut()">
+                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="overlayOn(1)">
               </div>
             </div>
 
             <div class="shortcut">
-              <img id="shortcut-text-2" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
+              <img id="shortcut-image-2" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
 
               <div class="shortcut-text-container">
                 <h2 id="shortcut-text-2" class="shortcut-text">Shortcut 2</h2>
-                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="changeShortcut()">
+                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="overlayOn()">
               </div>
             </div>
 
             <div class="shortcut">
-              <img id="shortcut-text-3" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
+              <img id="shortcut-image-3" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
 
               <div class="shortcut-text-container">
                 <h2 id="shortcut-text-3" class="shortcut-text">Shortcut 3</h2>
-                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="changeShortcut()">
+                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="overlayOn()">
               </div>
             </div>
 
             <div class="shortcut">
-              <img id="shortcut-text-4" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
+              <img id="shortcut-image-4" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
 
               <div class="shortcut-text-container">
                 <h2 id="shortcut-text-4" class="shortcut-text">Shortcut 4</h2>
-                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="changeShortcut()">
+                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="overlayOn()">
               </div>
             </div>
           </div>
 
           <div class="shortcut-rows">
             <div class="shortcut">
-              <img id="shortcut-text-5" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
+              <img id="shortcut-image-5" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
 
               <div class="shortcut-text-container">
                 <h2 id="shortcut-text-5" class="shortcut-text">Shortcut 5</h2>
-                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="changeShortcut()">
+                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="overlayOn()">
               </div>
             </div>
 
             <div class="shortcut">
-              <img id="shortcut-text-6" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
+              <img id="shortcut-image-6" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
 
               <div class="shortcut-text-container">
                 <h2 id="shortcut-text-6" class="shortcut-text">Shortcut 6</h2>
-                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="changeShortcut()">
+                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="overlayOn()">
               </div>
             </div>
 
             <div class="shortcut">
-              <img id="shortcut-text-7" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
+              <img id="shortcut-image-7" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
 
               <div class="shortcut-text-container">
                 <h2 id="shortcut-text-7" class="shortcut-text">Shortcut 7</h2>
-                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="changeShortcut()">
+                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="overlayOn()">
               </div>
             </div>
 
             <div class="shortcut">
-              <img id="shortcut-text-8" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
+              <img id="shortcut-image-8" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
 
               <div class="shortcut-text-container">
                 <h2 id="shortcut-text-8" class="shortcut-text">Shortcut 8</h2>
-                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="changeShortcut()">
+                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="overlayOn()">
               </div>
             </div>
           </div>

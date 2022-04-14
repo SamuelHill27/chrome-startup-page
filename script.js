@@ -78,8 +78,38 @@ function swapSearchIcon() {
   }
 }
 
-function changeShortcut() {
+//shortcut overlay
 
+function overlayOn(shortcutNo) {
+  changeShortcut(shortcutNo);
+  document.getElementById("overlay").style.display = "flex";
+
+  window.addEventListener('paste', event => {
+    var items = (event.clipboardData || event.originalEvent.clipboardData).items;
+    console.log(JSON.stringify(items)); // will give you the mime types
+
+    for (index in items) {
+      var item = items[index];
+
+      if (item.kind === 'file') {
+        var blob = item.getAsFile();
+        var reader = new FileReader();
+
+        reader.onload = function(event) {
+          document.getElementById('paste-image-preview').src = event.target.result;
+        }; // data url!
+        reader.readAsDataURL(blob);
+      }
+    }
+  });
+}
+
+function overlayOff() {
+  document.getElementById('overlay').style.display = "none";
+}
+
+function changeShortcut(id) {
+  
 }
 
 //news api
