@@ -78,10 +78,25 @@ function swapSearchIcon() {
   }
 }
 
-//shortcut overlay
+//Shortcuts
+
+loadShortcuts();
+
+function loadShortcuts() {
+  fetch("shortcuts.php", {method: 'GET'})
+    .then(response => response.json())
+    .then((data) => {
+
+      console.log(data);
+
+      for (let i = 0; i < data.length; i++) {
+        document.getElementById('shortcut-text-' + (i+1)).innerHTML = data[i]['title'];
+      }
+
+    });
+}
 
 function overlayOn(shortcutNo) {
-  changeShortcut(shortcutNo);
   document.getElementById("overlay").style.display = "flex";
 
   window.addEventListener('paste', event => {
@@ -108,8 +123,8 @@ function overlayOff() {
   document.getElementById('overlay').style.display = "none";
 }
 
-function changeShortcut(id) {
-  
+function setShortcut(id) {
+
 }
 
 //news api
@@ -121,6 +136,7 @@ function newsApi() {
   const newsFeedTop = "https://newsdata.io/api/1/news?apikey=" + newsApiKey + "&domain=bbc&category=top";
   const newsFeed = "https://newsdata.io/api/1/news?apikey=" + newsApiKey + "&domain=bbc&category=business,science,health,entertainment,technology";
   const newsFeedNextPage = "https://newsdata.io/api/1/news?apikey=" + newsApiKey + "&domain=bbc&category=business,science,health,entertainment,technology&page=1";
+
   fetchNews(newsFeedTop);
   fetchNews(newsFeed);
   fetchNews(newsFeedNextPage);
