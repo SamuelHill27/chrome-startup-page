@@ -7,12 +7,14 @@
     public $id;
     public $title;
     public $imageUrl;
+    public $websiteUrl;
 
     // Constructor
-    function __construct($id, $title, $imageUrl) {
+    function __construct($id, $title, $imageUrl, $websiteUrl) {
       $this->id = $id;
       $this->title = $title;
       $this->imageUrl = $imageUrl;
+      $this->websiteUrl = $websiteUrl;
     }
 
     // Methods
@@ -20,12 +22,17 @@
       return $this->id;
     }
 
+
     function get_title() {
       return $this->title;
     }
-
+    
     function get_imageUrl() {
       return $this->imageUrl;
+    }
+    
+    function get_websiteUrl() {
+      return $this->websiteUrl;
     }
   }
 
@@ -56,7 +63,7 @@
 
       while($shortcutrow = mysqli_fetch_array($shortcutquery_result))
       {
-        array_push($shortcuts, new Shortcut($shortcutrow["id"], $shortcutrow["title"], $shortcutrow["image_url"]));
+        array_push($shortcuts, new Shortcut($shortcutrow["id"], $shortcutrow["title"], $shortcutrow["image_url"], $shortcutrow["website_url"]));
       }
 
       echo json_encode($shortcuts);

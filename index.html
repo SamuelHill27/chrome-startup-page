@@ -16,8 +16,12 @@
           <img id="paste-image-preview" class="shortcut-images" src="assets/paste-image.png">
 
           <div class="shortcut-text-container">
-            <input id="newShortcutText" class="shortcut-text" type="text" placeholder="Shortcut Title">
-            <button class="" onclick="changeShortcut()">Change</button>
+            <div class="overlayInputs">
+              <input id="newShortcutText" class="shortcut-text" type="text" placeholder="Shortcut Title" autocomplete="off">
+              <input id="newShortcutImage" class="shortcut-text" type="text" placeholder="Shortcut Image Address" autocomplete="off">
+              <input id="newShortcutUrl" class="shortcut-text" type="text" placeholder="Shortcut Website Address" autocomplete="off">
+            </div>
+            <button onclick="updateShortcut()">Change</button>
           </div>
         </div>
       </div>
@@ -199,7 +203,7 @@
 
           <div class="shortcut-rows">
             <div class="shortcut">
-              <img id="shortcut-image-1" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
+              <a id="shortcut-address-1" href=""><img id="shortcut-image-1" class="shortcut-images" src="assets/shortcut-placeholder-image.png"></a>
 
               <div class="shortcut-text-container">
                 <h2 id="shortcut-text-1" class="shortcut-text">Shortcut 1</h2>
@@ -208,67 +212,67 @@
             </div>
 
             <div class="shortcut">
-              <img id="shortcut-image-2" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
+              <a id="shortcut-address-2" href=""><img id="shortcut-image-2" class="shortcut-images" src="assets/shortcut-placeholder-image.png"></a>
 
               <div class="shortcut-text-container">
                 <h2 id="shortcut-text-2" class="shortcut-text">Shortcut 2</h2>
-                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="overlayOn()">
+                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="overlayOn(2)">
               </div>
             </div>
 
             <div class="shortcut">
-              <img id="shortcut-image-3" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
+              <a id="shortcut-address-3" href=""><img id="shortcut-image-3" class="shortcut-images" src="assets/shortcut-placeholder-image.png"></a>
 
               <div class="shortcut-text-container">
                 <h2 id="shortcut-text-3" class="shortcut-text">Shortcut 3</h2>
-                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="overlayOn()">
+                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="overlayOn(3)">
               </div>
             </div>
 
             <div class="shortcut">
-              <img id="shortcut-image-4" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
+              <a id="shortcut-address-4" href=""><img id="shortcut-image-4" class="shortcut-images" src="assets/shortcut-placeholder-image.png"></a>
 
               <div class="shortcut-text-container">
                 <h2 id="shortcut-text-4" class="shortcut-text">Shortcut 4</h2>
-                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="overlayOn()">
+                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="overlayOn(4)">
               </div>
             </div>
           </div>
 
           <div class="shortcut-rows">
             <div class="shortcut">
-              <img id="shortcut-image-5" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
+              <a id="shortcut-address-5" href=""><img id="shortcut-image-5" class="shortcut-images" src="assets/shortcut-placeholder-image.png"></a>
 
               <div class="shortcut-text-container">
                 <h2 id="shortcut-text-5" class="shortcut-text">Shortcut 5</h2>
-                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="overlayOn()">
+                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="overlayOn(5)">
               </div>
             </div>
 
             <div class="shortcut">
-              <img id="shortcut-image-6" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
+              <a id="shortcut-address-6" href=""><img id="shortcut-image-6" class="shortcut-images" src="assets/shortcut-placeholder-image.png"></a>
 
               <div class="shortcut-text-container">
                 <h2 id="shortcut-text-6" class="shortcut-text">Shortcut 6</h2>
-                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="overlayOn()">
+                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="overlayOn(6)">
               </div>
             </div>
 
             <div class="shortcut">
-              <img id="shortcut-image-7" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
+              <a id="shortcut-address-7" href=""><img id="shortcut-image-7" class="shortcut-images" src="assets/shortcut-placeholder-image.png"></a>
 
               <div class="shortcut-text-container">
                 <h2 id="shortcut-text-7" class="shortcut-text">Shortcut 7</h2>
-                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="overlayOn()">
+                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="overlayOn(7)">
               </div>
             </div>
 
             <div class="shortcut">
-              <img id="shortcut-image-8" class="shortcut-images" src="assets/shortcut-placeholder-image.png">
+              <a id="shortcut-address-8" href=""><img id="shortcut-image-8" class="shortcut-images" src="assets/shortcut-placeholder-image.png"></a>
 
               <div class="shortcut-text-container">
                 <h2 id="shortcut-text-8" class="shortcut-text">Shortcut 8</h2>
-                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="overlayOn()">
+                <img class="edit-shortcut" src="assets/edit-shortcut-image.png" onclick="overlayOn(8)">
               </div>
             </div>
           </div>
@@ -282,34 +286,34 @@
 
           <div class="google-services-rows">
             <div class="google-services-item">
-              <a href="https://docs.google.com/document/u/0/" target="_blank"><img src="assets/docs.png"></a>
+              <a href="https://docs.google.com/document/u/0/"><img src="assets/docs.png"></a>
               <h3>Docs</h3>
             </div>
 
             <div class="google-services-item">
-              <a href="https://docs.google.com/presentation/u/0/" target="_blank"><img src="assets/slides.png"></a>
+              <a href="https://docs.google.com/presentation/u/0/"><img src="assets/slides.png"></a>
               <h3>Slides</h3>
             </div>
 
             <div class="google-services-item">
-              <a href="https://docs.google.com/spreadsheets/u/0/" target="_blank"><img src="assets/sheets.png"></a>
+              <a href="https://docs.google.com/spreadsheets/u/0/"><img src="assets/sheets.png"></a>
               <h3>Sheets</h3>
             </div>
           </div>
 
           <div class="google-services-rows">
             <div class="google-services-item">
-              <a href="https://www.google.com/maps/" target="_blank"><img src="assets/maps.png"></a>
-              <h3>Maps</h3>
+              <a href="https://photos.google.com/"><img src="assets/photos.png"></a>
+              <h3>Photos</h3>
             </div>
 
             <div class="google-services-item">
-              <a href="https://www.gmail.com/" target="_blank"><img src="assets/gmail.png"></a>
+              <a href="https://www.gmail.com/"><img src="assets/gmail.png"></a>
               <h3>Gmail</h3>
             </div>
 
             <div class="google-services-item">
-              <a href="https://www.youtube.com/" target="_blank"><img src="assets/youtube.png"></a>
+              <a href="https://www.youtube.com/"><img src="assets/youtube.png"></a>
               <h3>Youtube</h3>
             </div>
           </div>

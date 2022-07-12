@@ -1,3 +1,5 @@
+var currentShortcut;
+
 function getCurrentDate() {
   return new Date();
 }
@@ -47,7 +49,7 @@ function search() {
     }
 
     console.log(fullQuery);
-    window.open("https://www.google.com/search?q=" + fullQuery)
+    window.open("https://www.google.com/search?q=" + fullQuery,"_self")
   }
 }
 
@@ -83,48 +85,64 @@ function swapSearchIcon() {
 loadShortcuts();
 
 function loadShortcuts() {
-  fetch("shortcuts.php", {method: 'GET'})
+  fetch("getShortcuts.php", {method: 'GET'})
     .then(response => response.json())
     .then((data) => {
-
       console.log(data);
 
       for (let i = 0; i < data.length; i++) {
         document.getElementById('shortcut-text-' + (i+1)).innerHTML = data[i]['title'];
+        document.getElementById('shortcut-image-' + (i+1)).src = data[i]['imageUrl'];
+        document.getElementById('shortcut-address-' + (i+1)).href = data[i]['websiteUrl'];
       }
 
     });
 }
 
+function updateShortcut() {
+  let newTitle = document.getElementById('newShortcutText').value;
+  let newImage = document.getElementById('newShortcutImage').value;
+  let newUrl = document.getElementById('newShortcutUrl').value;
+  
+  if (newTitle == "") {
+    newTitle = "Shortcut " + currentShortcut;
+  }
+  
+  if (newImage == "") {
+    newImage = "assets/shortcut-placeholder-image.png";
+  }
+
+  let array = [currentShortcut, newTitle, newImage, newUrl];
+  
+  console.log(array);
+
+  fetch('setShortcuts.php', {
+    method: 'POST', // or 'PUT'
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(array),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      loadShortcuts();
+    })
+    .catch(error => {
+      console.error("not working");
+      console.error('Error:', error);
+    });
+    
+   overlayOff(); 
+}
+
 function overlayOn(shortcutNo) {
+  currentShortcut = shortcutNo;
   document.getElementById("overlay").style.display = "flex";
-
-  window.addEventListener('paste', event => {
-    var items = (event.clipboardData || event.originalEvent.clipboardData).items;
-    console.log(JSON.stringify(items)); // will give you the mime types
-
-    for (index in items) {
-      var item = items[index];
-
-      if (item.kind === 'file') {
-        var blob = item.getAsFile();
-        var reader = new FileReader();
-
-        reader.onload = function(event) {
-          document.getElementById('paste-image-preview').src = event.target.result;
-        }; // data url!
-        reader.readAsDataURL(blob);
-      }
-    }
-  });
 }
 
 function overlayOff() {
   document.getElementById('overlay').style.display = "none";
-}
-
-function setShortcut(id) {
-
 }
 
 //news api
@@ -234,18 +252,20 @@ document.getElementById('date').innerHTML = day + " " + dayOfMonth + " " + month
 weatherApi();
 
 function weatherApi() {
-  const weatherApiKey = "7464d8f56ed30f0467bc4d7331befa80";
-  const lat = 51.276560;
-  const lon = -0.842150;
-  const weatherFeed = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exlude=daily&appid=" + weatherApiKey;
-
-  fetch(weatherFeed)
+    fetch("weather.php", {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    }})
     .then(response => response.json())
     .then(data => {
-      console.log(data);
-      setCurrentWeather(data['current']);
-      setHourlyWeather(data['hourly']);
-      setDailyWeather(data['daily']);
+      console.log('Success:', data);
+      //setCurrentWeather(data['current']);
+      //setHourlyWeather(data['hourly']);
+      //setDailyWeather(data['daily']);
+    })
+      .catch(error => {
+        console.error('Error:', error);
     });
 }
 
@@ -294,6 +314,6 @@ function setDailyWeather(data) {
 
     let day = days[dayAtIndex];
     document.getElementById('day' + (i+1)).innerHTML = day;
-    document.getElementById('day' + (i+1) + '-weather-icon').src = "http://openweathermap.org/img/wn/" + data[i]['weather']['0']['icon'] + "@2x.png";
+    document.getElementById('day' + (i+1) + '-weather-icon').src = "http://openweathermap.org/img/wn/" + data[i+1]['weather']['0']['icon'] + "@2x.png";
   }
 }

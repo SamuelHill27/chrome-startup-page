@@ -231,7 +231,7 @@ div {
 }
 
 .news-story {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(250, 240, 240);
 }
 
 #news-container a {
@@ -322,9 +322,16 @@ div {
   z-index: 1;
 }
 
-.shortcut-images {
-  max-width: 100%;
+.shortcut a {
+  width: 100%;
   height: 85%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.shortcut-images {
+  height: 100%;
 }
 
 .shortcut-text-container {
@@ -370,6 +377,14 @@ div {
   background-color: rgba(255, 255, 255, 0.7);
 }
 
+#overlay .shortcut-images {
+  height: 80%;
+}
+
+#overlay .shortcut-text-container {
+  height: 20%;
+}
+
 #overlayOff {
   width: 100%;
   height: 100%;
@@ -377,12 +392,26 @@ div {
   cursor: pointer;
 }
 
-#newShortcutText {
-  width: 78%;
+.overlayInputs {
+  width: 80%;
+}
+
+.overlayInputs input {
+  width: 90%;
+  margin-bottom: 0.75%;
+}
+
+#newShortcutUrl {
+  font-size: 0.9vh;
+}
+
+#newShortcutImage {
+  font-size: 0.9vh;
 }
 
 #overlay button {
-  height: 1.2vw;
+  height: 70%;
+  width: 17%;
 }
 
 /* Google Services Widget */
