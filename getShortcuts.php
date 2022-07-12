@@ -26,21 +26,26 @@
     function get_title() {
       return $this->title;
     }
-    
+
     function get_imageUrl() {
       return $this->imageUrl;
     }
-    
+
     function get_websiteUrl() {
       return $this->websiteUrl;
     }
   }
 
   function openDatabase() {
-    $db_host='fdb32.awardspace.net'; //Should contain the "Database Host" value
+    // $db_host='fdb32.awardspace.net'; //Should contain the "Database Host" value
+    // $db_name='4080778_database'; //Should contain the "Database Name" value
+    // $db_user='4080778_database'; //Should contain the "Database User" value
+    // $db_pass='Jeffery123'; //Should contain the "Database Password" value
+
+    $db_host='localhost:3306'; //Should contain the "Database Host" value
     $db_name='4080778_database'; //Should contain the "Database Name" value
-    $db_user='4080778_database'; //Should contain the "Database User" value
-    $db_pass='Jeffery123'; //Should contain the "Database Password" value
+    $db_user='root'; //Should contain the "Database User" value
+    $db_pass=''; //Should contain the "Database Password" value
 
     $mysqli_connection = new MySQLi($db_host, $db_user, $db_pass, $db_name);
 
@@ -54,16 +59,23 @@
 
   function getDatabase() {
     $mysqli_connection = openDatabase();
+    $stmt;
+
+    if (file_get_contents("php://input") != "") {
+      $content = trim(file_get_contents("php://input"));
+      $decoded = json_decode($content, true);
+      $shortcutquery = "SELECT * FROM shortcuts WHERE id=$decoded";
+    } else {
+      $shortcutquery = "SELECT * FROM shortcuts";
+    }
 
     if ($mysqli_connection != null) {
-      $shortcutquery = "SELECT * FROM shortcuts";
-      $shortcutquery_result = mysqli_query($mysqli_connection, $shortcutquery);
-
+      $shortcutquery_result = mysqli_query($mysqli_connection, $shortcutquery);//gets result from query sent to db
       $shortcuts = array();
 
       while($shortcutrow = mysqli_fetch_array($shortcutquery_result))
       {
-        array_push($shortcuts, new Shortcut($shortcutrow["id"], $shortcutrow["title"], $shortcutrow["image_url"], $shortcutrow["website_url"]));
+        array_push($shortcuts, new Shortcut($shortcutrow["id"], $shortcutrow["title"], $shortcutrow["image_url"], $shortcutrow["website_url"]));//creates new shortcut from row in database and adds it to shortcut array
       }
 
       echo json_encode($shortcuts);

@@ -5,6 +5,7 @@ getDate();
 getWeather();
 
 var currentShortcut;
+var shortcuts;
 
 function getCurrentDate() {
   return new Date();
@@ -88,25 +89,27 @@ function swapSearchIcon() {
 
 //Shortcuts
 
-function getShortcuts() {
-  fetch("getShortcuts.php", {method: 'GET'})
-    .then(response => response.json())
-    .then((data) => {
-      console.log(data);
+function getShortcuts(shortcutNo) {
+  $.post("getShortcuts.php", JSON.stringify(shortcutNo), function(dataString, status){ //AJAX get request
 
-      for (let i = 0; i < data.length; i++) {
-        document.getElementById('shortcut-text-' + (i+1)).innerHTML = data[i]['title'];
-        document.getElementById('shortcut-image-' + (i+1)).src = data[i]['imageUrl'];
-        document.getElementById('shortcut-address-' + (i+1)).href = data[i]['websiteUrl'];
+    shortcuts = JSON.parse(dataString); //put into json format
+    console.log(shortcuts);
+
+    $(document).ready(function(){
+      for (let i = 0; i < shortcuts.length; i++) {
+        $('#shortcutText' + (i+1)).html(shortcuts[i]['title']);
+        $('#shortcutImage' + (i+1)).attr("src", shortcuts[i]['imageUrl']);
+        $('#shortcutAddress' + (i+1)).attr("href", shortcuts[i]['websiteUrl']);
       }
-
     });
+
+  });
 }
 
 function updateShortcut() {
-  let newTitle = document.getElementById('newShortcutText').value;
-  let newImage = document.getElementById('newShortcutImage').value;
-  let newUrl = document.getElementById('newShortcutUrl').value;
+  let newTitle = $('#newShortcutText').val();
+  let newImage = $('#newShortcutImage').val();
+  let newUrl = $('#newShortcutUrl').val();
 
   if (newTitle == "") {
     newTitle = "Shortcut " + currentShortcut;
@@ -117,30 +120,18 @@ function updateShortcut() {
   }
 
   let array = [currentShortcut, newTitle, newImage, newUrl];
-
   console.log(array);
 
-  fetch('setShortcuts.php', {
-    method: 'POST', // or 'PUT'
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(array),
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
-      getShortcuts();
-    })
-    .catch(error => {
-      console.error("not working");
-      console.error('Error:', error);
-    });
-
-   overlayOff();
+  $.post("setShortcuts.php", JSON.stringify(array), function(data, status){ console.log(status) });
+  overlayOff();
+  getShortcuts();
 }
 
 function overlayOn(shortcutNo) {
+  $("#newShortcutText").val(shortcuts[shortcutNo-1]['title']);
+  $("#newShortcutImage").val(shortcuts[shortcutNo-1]['imageUrl']);
+  $("#newShortcutUrl").val(shortcuts[shortcutNo-1]['websiteUrl']);
+
   currentShortcut = shortcutNo;
   document.getElementById("overlay").style.display = "flex";
 }

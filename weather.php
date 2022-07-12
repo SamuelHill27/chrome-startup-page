@@ -4,9 +4,7 @@
   $lat = 51.276560;
   $lon = -0.842150;
   $url = "https://api.openweathermap.org/data/2.5/onecall?lat=" . $lat . "&lon=" . $lon . "&exlude=daily&appid=" . $key;
-  $data = file_get_contents(urlencode($url));
-  echo $url;
-  echo urlencode($url);
-  echo $data;
+  $dataString = file_get_contents($url);
+  echo $dataString;
 
 ?>
