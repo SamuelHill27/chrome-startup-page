@@ -152,32 +152,29 @@ function overlayOff() {
 //news api
 
 function getNews() {
-  const newsApiKey = "pub_63646ddb98584a445eb1e2bdf0d0c83d6021";
-  const newsFeedTop = "https://newsdata.io/api/1/news?apikey=" + newsApiKey + "&domain=bbc&category=top";
-  const newsFeed = "https://newsdata.io/api/1/news?apikey=" + newsApiKey + "&domain=bbc&category=business,science,health,entertainment,technology";
-  const newsFeedNextPage = "https://newsdata.io/api/1/news?apikey=" + newsApiKey + "&domain=bbc&category=business,science,health,entertainment,technology&page=1";
+  $.get("news.php", function(dataString, status){ //AJAX get request
+    $(document).ready(function(){
 
-  fetchNews(newsFeedTop);
-  fetchNews(newsFeed);
-  fetchNews(newsFeedNextPage);
-}
-
-function fetchNews(newsFeed) {
-  fetch(newsFeed)
-    .then(response => response.json())
-    .then(data => {
+      let data = JSON.parse(dataString); //put into json format
       console.log(data);
-      let newsStory;
-      for (let i = 0; i < data['results'].length; i++) {
-        addNewsStory(data['results'][i]);
+
+      for (let i = 0; i < data['feedTop']['results'].length; i++) {
+        buildNewsStory(data['feedTop']['results'][i]);
       }
-    })
-    .catch((error) => {
-      document.getElementById('news-container').innerHTML = "error - no news api credits remaining";
+
+      for (let i = 0; i < data['feed']['results'].length; i++) {
+        buildNewsStory(data['feed']['results'][i]);
+      }
+
+      for (let i = 0; i < data['feedNextPage']['results'].length; i++) {
+        buildNewsStory(data['feedNextPage']['results'][i]);
+      }
+
     });
+  });
 }
 
-function addNewsStory(news) {
+function buildNewsStory(news) {
   let tagElements = ["a", "h2"];
   let newsElements = ['title', 'description'];
 
