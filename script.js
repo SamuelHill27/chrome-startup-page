@@ -153,11 +153,11 @@ function overlayOff() {
 
 function getNews() {
   $.get("news.php", function(dataString, status){ //AJAX get request
+
+    let data = JSON.parse(dataString); //put into json format
+    console.log(data);
+
     $(document).ready(function(){
-
-      let data = JSON.parse(dataString); //put into json format
-      console.log(data);
-
       for (let i = 0; i < data['feedTop']['results'].length; i++) {
         buildNewsStory(data['feedTop']['results'][i]);
       }
@@ -169,8 +169,8 @@ function getNews() {
       for (let i = 0; i < data['feedNextPage']['results'].length; i++) {
         buildNewsStory(data['feedNextPage']['results'][i]);
       }
-
     });
+
   });
 }
 
