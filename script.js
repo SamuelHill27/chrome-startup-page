@@ -1,3 +1,9 @@
+getShortcuts();
+getNews();
+updateCurrentTime();
+getDate();
+getWeather();
+
 var currentShortcut;
 
 function getCurrentDate() {
@@ -82,9 +88,7 @@ function swapSearchIcon() {
 
 //Shortcuts
 
-loadShortcuts();
-
-function loadShortcuts() {
+function getShortcuts() {
   fetch("getShortcuts.php", {method: 'GET'})
     .then(response => response.json())
     .then((data) => {
@@ -103,17 +107,17 @@ function updateShortcut() {
   let newTitle = document.getElementById('newShortcutText').value;
   let newImage = document.getElementById('newShortcutImage').value;
   let newUrl = document.getElementById('newShortcutUrl').value;
-  
+
   if (newTitle == "") {
     newTitle = "Shortcut " + currentShortcut;
   }
-  
+
   if (newImage == "") {
     newImage = "assets/shortcut-placeholder-image.png";
   }
 
   let array = [currentShortcut, newTitle, newImage, newUrl];
-  
+
   console.log(array);
 
   fetch('setShortcuts.php', {
@@ -126,14 +130,14 @@ function updateShortcut() {
     .then(response => response.json())
     .then(data => {
       console.log('Success:', data);
-      loadShortcuts();
+      getShortcuts();
     })
     .catch(error => {
       console.error("not working");
       console.error('Error:', error);
     });
-    
-   overlayOff(); 
+
+   overlayOff();
 }
 
 function overlayOn(shortcutNo) {
@@ -147,9 +151,7 @@ function overlayOff() {
 
 //news api
 
-newsApi();
-
-function newsApi() {
+function getNews() {
   const newsApiKey = "pub_63646ddb98584a445eb1e2bdf0d0c83d6021";
   const newsFeedTop = "https://newsdata.io/api/1/news?apikey=" + newsApiKey + "&domain=bbc&category=top";
   const newsFeed = "https://newsdata.io/api/1/news?apikey=" + newsApiKey + "&domain=bbc&category=business,science,health,entertainment,technology";
@@ -197,8 +199,6 @@ function addNewsStory(news) {
 
 //current time
 
-updateCurrentTime();
-
 function correctTime(time) {
   if (time < 10) {
     return ("0" + time);
@@ -229,9 +229,7 @@ function updateCurrentTime() {
 
 //current date
 
-setDate();
-
-function setDate() {
+function getDate() {
 const date = getCurrentDate();
 
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -249,71 +247,60 @@ document.getElementById('date').innerHTML = day + " " + dayOfMonth + " " + month
 
 //weather api
 
-weatherApi();
+function getWeather() {
+  $(document).ready(function(){
+    $.get("weather.php", function(dataString, status){ //AJAX get request
 
-function weatherApi() {
-    fetch("weather.php", {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    }})
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
-      //setCurrentWeather(data['current']);
-      //setHourlyWeather(data['hourly']);
-      //setDailyWeather(data['daily']);
-    })
-      .catch(error => {
-        console.error('Error:', error);
+      let data = JSON.parse(dataString); //put into json format
+      console.log(data);
+
+      //current weather
+      $("#weather-desc").html(capitalizeWeatherDesc(data['current']['weather']['0']['description']));
+      $('#wind-speed').html("Wind: " + data['current']['wind_speed'] + "ms⁻¹");
+      $('#temperature').html(Math.round(data['current']['temp'] - 273.15) + "°C");
+      $('#feels-like').html(Math.round(data['current']['feels_like'] - 273.15) + "°C");
+      $('#current-weather-icon').attr("src", "http://openweathermap.org/img/wn/" + data['current']['weather']['0']['icon'] + "@2x.png");
+
+      //sunrise and sunset
+      let sunriseSeconds = data['current']['sunrise'];
+      let sunriseDate = new Date(sunriseSeconds*1000);
+      let sunrise = correctTime(correctHour(sunriseDate.getHours())) + ":" + correctTime(correctHour(sunriseDate.getMinutes()));
+      let sunsetSeconds = data['current']['sunset'];
+      let sungetDate = new Date(sunsetSeconds*1000);
+      let sunset = correctTime(correctHour(sungetDate.getHours())) + ":" + correctTime(correctHour(sungetDate.getMinutes()));
+
+      $('#sunrise').html("Sunrise: " + sunrise);
+      $('#sunset').html("Sunset: " + sunset);
+
+      //hourly weather
+      let time;
+      for (let i = 0; i < 12; i++) {
+        $('#hour' + (i+1)).attr("src", "http://openweathermap.org/img/wn/" + data['hourly'][i]['weather']['0']['icon'] + "@2x.png"); //sets hourly weather icon
+        $('#hour' + (i+1) + 'Temp').html(Math.round(data['hourly'][i]['temp'] - 273.15) + "°C"); //sets hourly weather temperature
+
+        time = getCurrentDate().getHours() + (i+1); //ensures correct 24 hour range
+        if(time > 23) {
+          time -= 24;
+        }
+
+        $('#hourRange' + (i+1)).html(correctTime(correctHour(time)) + ":00"); //sets hourly time
+      }
+
+      //daily weather
+      const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      const currentDay = getCurrentDate().getDay();
+
+      for (let i = 0; i < 5; i++) {
+        let dayAtIndex = currentDay + 1 + i;
+        if (dayAtIndex > 6) {
+          dayAtIndex -= 7;
+        }
+
+        let day = days[dayAtIndex];
+        $('#day' + (i+1)).html(day);
+        $('#day' + (i+1) + 'WeatherIcon').attr("src", "http://openweathermap.org/img/wn/" + data['daily'][i+1]['weather']['0']['icon'] + "@2x.png");
+      }
+
     });
-}
-
-function setCurrentWeather(data) {
-  document.getElementById('weather-desc').innerHTML = capitalizeWeatherDesc(data['weather']['0']['description']);
-  document.getElementById('wind-speed').innerHTML = "Wind: " + data['wind_speed'] + "ms⁻¹";
-  document.getElementById('temperature').innerHTML = Math.round(data['temp'] - 273.15) + "°C";
-  document.getElementById('feels-like').innerHTML = Math.round(data['feels_like'] - 273.15) + "°C";
-
-  let sunriseSeconds = data['sunrise'];
-  let sunriseDate = new Date(sunriseSeconds*1000);
-  let sunrise = correctTime(correctHour(sunriseDate.getHours())) + ":" + correctTime(correctHour(sunriseDate.getMinutes()));
-  let sunsetSeconds = data['sunset'];
-  let sunsetDate = new Date(sunsetSeconds*1000);
-  let sunset = correctTime(correctHour(sunsetDate.getHours())) + ":" + correctTime(correctHour(sunsetDate.getMinutes()));
-
-  document.getElementById('sunrise').innerHTML = "Sunrise: " + sunrise;
-  document.getElementById('sunset').innerHTML = "Sunset: " + sunset;
-
-  document.getElementById('current-weather-icon').src = "http://openweathermap.org/img/wn/" + data['weather']['0']['icon'] + "@2x.png";
-}
-
-function setHourlyWeather(data) {
-  let time;
-  for (let i = 0; i < 12; i++) {
-    document.getElementById('hour+' + (i+1)).src = "http://openweathermap.org/img/wn/" + data[i]['weather']['0']['icon'] + "@2x.png";
-    document.getElementById('hour+' + (i+1) + '-temp').innerHTML = Math.round(data[i]['temp'] - 273.15) + "°C";
-
-    time = getCurrentDate().getHours() + (i+1);
-    if(time > 23) {
-      time -= 24;
-    }
-    document.getElementById('hourRange' + (i+1)).innerHTML = correctTime(correctHour(time)) + ":00";
-  }
-}
-
-function setDailyWeather(data) {
-  const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  const currentDay = getCurrentDate().getDay();
-
-  for (let i = 0; i < 5; i++) {
-    let dayAtIndex = currentDay + 1 + i;
-    if (dayAtIndex > 6) {
-      dayAtIndex -= 7;
-    }
-
-    let day = days[dayAtIndex];
-    document.getElementById('day' + (i+1)).innerHTML = day;
-    document.getElementById('day' + (i+1) + '-weather-icon').src = "http://openweathermap.org/img/wn/" + data[i+1]['weather']['0']['icon'] + "@2x.png";
-  }
+  });
 }
