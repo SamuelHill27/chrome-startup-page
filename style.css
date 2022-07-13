@@ -378,11 +378,12 @@ div {
 }
 
 #overlay .shortcut-images {
-  height: 80%;
+  height: 85%;
+  object-fit: cover;
 }
 
 #overlay .shortcut-text-container {
-  height: 20%;
+  height: 15%;
 }
 
 #overlayOff {
@@ -401,17 +402,10 @@ div {
   margin-bottom: 0.75%;
 }
 
-#newShortcutUrl {
-  font-size: 0.9vh;
-}
-
-#newShortcutImage {
-  font-size: 0.9vh;
-}
-
 #overlay button {
-  height: 70%;
+  height: 85%;
   width: 17%;
+  font-size: 0.6vmax;
 }
 
 /* Google Services Widget */

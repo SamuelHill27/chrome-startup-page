@@ -10,7 +10,7 @@
 
   $feedNextPage = "https://newsdata.io/api/1/news?apikey=" . $key . "&domain=bbc&category=business,science,health,entertainment,technology&page=1";
   $url3 = file_get_contents($feedNextPage);
-
+  
   echo "{ \"feedTop\" : " . $url1 . ", \"feed\" : " . $url2 . ", \"feedNextPage\" : " . $url3 . "}";
 
 ?>

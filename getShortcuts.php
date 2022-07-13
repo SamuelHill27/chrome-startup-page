@@ -37,11 +37,6 @@
   }
 
   function openDatabase() {
-    // $db_host='fdb32.awardspace.net'; //Should contain the "Database Host" value
-    // $db_name='4080778_database'; //Should contain the "Database Name" value
-    // $db_user='4080778_database'; //Should contain the "Database User" value
-    // $db_pass='Jeffery123'; //Should contain the "Database Password" value
-
     $db_host='localhost:3306'; //Should contain the "Database Host" value
     $db_name='4080778_database'; //Should contain the "Database Name" value
     $db_user='root'; //Should contain the "Database User" value

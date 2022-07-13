@@ -1,11 +1,25 @@
 <?php
 
-  function openDatabase() {
-    // $db_host='fdb32.awardspace.net'; //Should contain the "Database Host" value
-    // $db_name='4080778_database'; //Should contain the "Database Name" value
-    // $db_user='4080778_database'; //Should contain the "Database User" value
-    // $db_pass='Jeffery123'; //Should contain the "Database Password" value
+  updateDatabase();
 
+  function base64ToImageUrl($shortcutNo, $base64) {
+    $filePath = "shortcutImages/shortcut" . $shortcutNo . ".png";
+    $file = fopen($filePath, 'wb');
+
+    // split the string on commas
+    // $data[ 0 ] == "data:image/png;base64"
+    // $data[ 1 ] == <actual base64 string>
+    $data = explode(',', $base64);
+
+    // we could add validation here with ensuring count( $data ) > 1
+    fwrite($file, base64_decode($data[1]));
+
+    // clean up the file resource
+    fclose( $file );
+    return $filePath;
+  }
+
+  function openDatabase() {
     $db_host='localhost:3306'; //Should contain the "Database Host" value
     $db_name='4080778_database'; //Should contain the "Database Name" value
     $db_user='root'; //Should contain the "Database User" value
@@ -21,11 +35,16 @@
     }
   }
 
-  updateDatabase();
-
   function updateDatabase() {
     $content = trim(file_get_contents("php://input"));
     $decoded = json_decode($content, true);
+
+    $placeholder = "assets/shortcut-placeholder-image.png";
+    if ($decoded[2] == $placeholder) {
+      $imageUrl = $placeholder;
+    } else {
+      $imageUrl = base64ToImageUrl($decoded[0], $decoded[2]);
+    }
 
     $mysqli_connection = openDatabase();
     $stmt;
@@ -33,7 +52,7 @@
     try {
       if ($mysqli_connection != null) {
         $stmt = mysqli_prepare($mysqli_connection, "UPDATE shortcuts SET title=?, image_url=?, website_url=? WHERE id=?");
-        mysqli_stmt_bind_param($stmt, "sssi", $decoded[1], $decoded[2], $decoded[3], $decoded[0]);
+        mysqli_stmt_bind_param($stmt, "sssi", $decoded[1], $imageUrl, $decoded[3], $decoded[0]);
         mysqli_stmt_execute($stmt);
 
         if (mysqli_stmt_execute($stmt)) {

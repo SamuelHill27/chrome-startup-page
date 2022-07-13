@@ -6,6 +6,8 @@ getWeather();
 
 var currentShortcut;
 var shortcuts;
+var overlayStatus = false;
+var newBase64;
 
 function getCurrentDate() {
   return new Date();
@@ -87,19 +89,41 @@ function swapSearchIcon() {
   }
 }
 
+//paste
+
+function paste() {
+  document.onpaste = function (event) { //when paste even is detected upon the document
+    if (overlayStatus) {
+      var items = (event.clipboardData || event.originalEvent.clipboardData).items; //get items from contents of clipboard
+
+      for (var index in items) {
+        var item = items[index];
+
+        if (item.kind === 'file') {
+          var blob = item.getAsFile(); //caches file object
+          var reader = new FileReader();
+          reader.readAsDataURL(blob);
+
+          reader.onloadend = function (event) {
+            newBase64 = event.target.result;
+            $("#pasteImagePreview").attr("src", newBase64);
+          };
+        }
+      }
+    }
+  };
+}
+
 //Shortcuts
 
 function getShortcuts(shortcutNo) {
   $.post("getShortcuts.php", JSON.stringify(shortcutNo), function(dataString, status){ //AJAX get request
-
     shortcuts = JSON.parse(dataString); //put into json format
-    console.log(shortcuts);
-
     $(document).ready(function(){
       for (let i = 0; i < shortcuts.length; i++) {
         $('#shortcutText' + (i+1)).html(shortcuts[i]['title']);
-        $('#shortcutImage' + (i+1)).attr("src", shortcuts[i]['imageUrl']);
         $('#shortcutAddress' + (i+1)).attr("href", shortcuts[i]['websiteUrl']);
+        $('#shortcutImage' + (i+1)).attr("src", shortcuts[i]['imageUrl']);
       }
     });
 
@@ -108,23 +132,28 @@ function getShortcuts(shortcutNo) {
 
 function updateShortcut() {
   let newTitle = $('#newShortcutText').val();
-  let newImage = $('#newShortcutImage').val();
-  let newUrl = $('#newShortcutUrl').val();
-
   if (newTitle == "") {
     newTitle = "Shortcut " + currentShortcut;
   }
 
-  if (newImage == "") {
+  let newImage = $('#pasteImagePreview').attr("src");
+  if (newImage == "assets/paste-image.png") {
     newImage = "assets/shortcut-placeholder-image.png";
+  } else {
+    newImage = newBase64;
   }
+
+  let newUrl = $('#newShortcutUrl').val();
 
   let array = [currentShortcut, newTitle, newImage, newUrl];
   console.log(array);
 
-  $.post("setShortcuts.php", JSON.stringify(array), function(data, status){ console.log(status) });
-  overlayOff();
-  getShortcuts();
+  $.post("setShortcuts.php", JSON.stringify(array), function(data, status){
+    $(document).ready(function(){
+      overlayOff();
+      getShortcuts();
+    });
+  });
 }
 
 function overlayOn(shortcutNo) {
@@ -134,10 +163,14 @@ function overlayOn(shortcutNo) {
 
   currentShortcut = shortcutNo;
   document.getElementById("overlay").style.display = "flex";
+  overlayStatus = true;
+  paste();
 }
 
 function overlayOff() {
   document.getElementById('overlay').style.display = "none";
+  overlayStatus = false;
+  $("#pasteImagePreview").attr("src", "assets/paste-image.png");
 }
 
 //news api
@@ -145,8 +178,12 @@ function overlayOff() {
 function getNews() {
   $.get("news.php", function(dataString, status){ //AJAX get request
 
+    if (dataString[0] == "<") {
+      $("#news-container").html("error - probably run out of tokens :(");
+      console.log(dataString);
+    }
+
     let data = JSON.parse(dataString); //put into json format
-    console.log(data);
 
     $(document).ready(function(){
       for (let i = 0; i < data['feedTop']['results'].length; i++) {
@@ -236,11 +273,10 @@ document.getElementById('date').innerHTML = day + " " + dayOfMonth + " " + month
 //weather api
 
 function getWeather() {
-  $(document).ready(function(){
-    $.get("weather.php", function(dataString, status){ //AJAX get request
+  $.get("weather.php", function(dataString, status){ //AJAX get request
 
+    $(document).ready(function(){
       let data = JSON.parse(dataString); //put into json format
-      console.log(data);
 
       //current weather
       $("#weather-desc").html(capitalizeWeatherDesc(data['current']['weather']['0']['description']));
@@ -288,7 +324,7 @@ function getWeather() {
         $('#day' + (i+1)).html(day);
         $('#day' + (i+1) + 'WeatherIcon').attr("src", "http://openweathermap.org/img/wn/" + data['daily'][i+1]['weather']['0']['icon'] + "@2x.png");
       }
-
     });
+
   });
 }
