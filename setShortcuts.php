@@ -2,20 +2,15 @@
 
   updateDatabase();
 
-  function base64ToImageUrl($shortcutNo, $base64) {
-    $filePath = "shortcutImages/shortcut" . $shortcutNo . ".png";
-    $file = fopen($filePath, 'wb');
+  function base64ToImageUrl($shortcutNo, $base64, $flipNo) {
+    $filePath = "shortcutImages/shortcut" . $shortcutNo . "_" . $flipNo . ".png";
 
     // split the string on commas
     // $data[ 0 ] == "data:image/png;base64"
     // $data[ 1 ] == <actual base64 string>
     $data = explode(',', $base64);
 
-    // we could add validation here with ensuring count( $data ) > 1
-    fwrite($file, base64_decode($data[1]));
-
-    // clean up the file resource
-    fclose( $file );
+    file_put_contents($filePath, base64_decode($data[1]));
     return $filePath;
   }
 
@@ -40,10 +35,11 @@
     $decoded = json_decode($content, true);
 
     $placeholder = "assets/shortcut-placeholder-image.png";
+    $imageUrl;
     if ($decoded[2] == $placeholder) {
       $imageUrl = $placeholder;
     } else {
-      $imageUrl = base64ToImageUrl($decoded[0], $decoded[2]);
+      $imageUrl = base64ToImageUrl($decoded[0], $decoded[2], $decoded[4]);
     }
 
     $mysqli_connection = openDatabase();

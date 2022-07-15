@@ -57,7 +57,6 @@ function search() {
       fullQuery += "+" + queryWordsArr[j];
     }
 
-    console.log(fullQuery);
     window.open("https://www.google.com/search?q=" + fullQuery,"_self")
   }
 }
@@ -119,6 +118,7 @@ function paste() {
 function getShortcuts(shortcutNo) {
   $.post("getShortcuts.php", JSON.stringify(shortcutNo), function(dataString, status){ //AJAX get request
     shortcuts = JSON.parse(dataString); //put into json format
+
     $(document).ready(function(){
       for (let i = 0; i < shortcuts.length; i++) {
         $('#shortcutText' + (i+1)).html(shortcuts[i]['title']);
@@ -136,29 +136,38 @@ function updateShortcut() {
     newTitle = "Shortcut " + currentShortcut;
   }
 
+  //only needed upon initial use of shortcuts
   let newImage = $('#pasteImagePreview').attr("src");
   if (newImage == "assets/paste-image.png") {
-    newImage = "assets/shortcut-placeholder-image.png";
+    newImage = "assets/shortcut-placeholder-image.png"
   } else {
     newImage = newBase64;
   }
 
-  let newUrl = $('#newShortcutUrl').val();
+  //round about way of solving browser caching issue due to using same image url even after image contents change
+  let flipNo = 0;
+  if (shortcuts[currentShortcut]['imageUrl'].endsWith("0.png")) {
+    flipNo = 1;
+  }
 
-  let array = [currentShortcut, newTitle, newImage, newUrl];
-  console.log(array);
+  let newUrl = $('#newShortcutUrl').val();
+  let array = [currentShortcut, newTitle, newImage, newUrl, flipNo];
 
   $.post("setShortcuts.php", JSON.stringify(array), function(data, status){
-    $(document).ready(function(){
-      overlayOff();
+    overlayOff();
+    setTimeout(function(){
       getShortcuts();
-    });
+    }, 1500);
   });
 }
 
 function overlayOn(shortcutNo) {
   $("#newShortcutText").val(shortcuts[shortcutNo-1]['title']);
-  $("#newShortcutImage").val(shortcuts[shortcutNo-1]['imageUrl']);
+  if (shortcuts[shortcutNo-1]['imageUrl'] == "assets/shortcut-placeholder-image.png") {
+    $("#pasteImagePreview").attr("src", "assets/paste-image.png");
+  } else {
+    $("#pasteImagePreview").attr("src", shortcuts[shortcutNo-1]['imageUrl']);
+  }
   $("#newShortcutUrl").val(shortcuts[shortcutNo-1]['websiteUrl']);
 
   currentShortcut = shortcutNo;
@@ -170,7 +179,6 @@ function overlayOn(shortcutNo) {
 function overlayOff() {
   document.getElementById('overlay').style.display = "none";
   overlayStatus = false;
-  $("#pasteImagePreview").attr("src", "assets/paste-image.png");
 }
 
 //news api
